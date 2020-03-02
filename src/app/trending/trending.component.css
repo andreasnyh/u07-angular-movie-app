@@ -1,7 +1,8 @@
-.poster {
+.poster-container {
   border: 1px solid;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   /* margin-left: 5px; */
 }
+

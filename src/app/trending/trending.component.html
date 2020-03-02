@@ -1,0 +1,12 @@
+<h1>Trending Movies</h1>
+<div class="poster-container">
+  <!-- Loop trending movies, limit result with slice -->
+  <div *ngFor="let item of trending | slice: 0:5">
+    <img
+      class="poster-img"
+      src="https://image.tmdb.org/t/p/w200/{{ item.poster_path }}"
+      title="{{ item.title }}"
+      alt="{{ item.title }}"
+    />
+  </div>
+</div>

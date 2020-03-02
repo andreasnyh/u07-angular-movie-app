@@ -4,12 +4,12 @@ import { HttpClientModule } from "@angular/common/http";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ApiTestComponent } from './api-test/api-test.component';
+import { TrendingComponent } from './trending/trending.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ApiTestComponent
+    TrendingComponent
   ],
   imports: [
     HttpClientModule,

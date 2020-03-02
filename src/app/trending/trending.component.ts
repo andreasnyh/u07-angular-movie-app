@@ -6,11 +6,12 @@ import { Movie } from "../movie";
 import { ApiService } from "../api.service";
 
 @Component({
-  selector: 'app-api-test',
-  templateUrl: './api-test.component.html',
-  styleUrls: ['./api-test.component.css']
+  selector: 'app-trending',
+  templateUrl: './trending.component.html',
+  styleUrls: ['./trending.component.css']
 })
-export class ApiTestComponent implements OnInit {
+export class TrendingComponent implements OnInit {
+
   key = environment.apiKey;
   baseUrl = environment.apiBase;
   HttpClient: any;
