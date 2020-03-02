@@ -25,7 +25,6 @@ export class ApiService {
 
   getTrending(page: number): Observable<Movie[]> {
     console.log(`getTrending page: ${page}`);
-
     return this.http.get<Movie[]>(`${this.baseUrl}/trending/movie/week${this.key}&page=${page}`)
       .pipe(
         tap(_ => console.log('fetched trending')),
@@ -33,20 +32,29 @@ export class ApiService {
       );
   }
 
-    getPopular(): Observable<Movie[]> {
-      return this.http.get<Movie[]>(`${this.baseUrl}/movie/popular${this.key}&page=1`)
-        .pipe(
-          tap(_ => console.log('fetched popular')),
-          catchError(this.handleError<Movie[]>('getPopular', []))
-        );
-    }
+  getPopular(): Observable<Movie[]> {
+    return this.http.get<Movie[]>(`${this.baseUrl}/movie/popular${this.key}&page=1`)
+      .pipe(
+        tap(_ => console.log('fetched popular')),
+        catchError(this.handleError<Movie[]>('getPopular', []))
+      );
+  }
+
+  getMovieDetails(id: number): Observable<Movie[]> {
+    console.log(`getMovieDetails id: ${id}`);
+    return this.http.get<Movie[]>(`${this.baseUrl}/movie/${id}${this.key}`)
+      .pipe(
+        tap(_ => console.log('fetched movie details')),
+        catchError(this.handleError<Movie[]>('getMovieDetails', []))
+      );
+  }
 
   /**
- * Handle Http operation that failed.
- * Let the app continue.
- * @param operation - name of the operation that failed
- * @param result - optional value to return as the observable result
- */
+   * Handle Http operation that failed.
+   * Let the app continue.
+   * @param operation - name of the operation that failed
+   * @param result - optional value to return as the observable result
+   */
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 

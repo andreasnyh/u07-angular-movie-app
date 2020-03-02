@@ -2,12 +2,14 @@
 <div class="poster-container">
   <!-- Loop trending movies, limit result with slice -->
   <div *ngFor="let item of trending | slice: 0:20">
+    <a routerLink="/detail/{{item.id}}">
     <img
       class="poster-img"
       src="https://image.tmdb.org/t/p/w400/{{ item.poster_path }}"
       title="{{ item.title }}"
       alt="{{ item.title }}"
     />
+  </a>
   </div>
 </div>
 

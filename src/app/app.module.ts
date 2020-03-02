@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { TrendingComponent } from './trending/trending.component';
 import { PopularComponent } from './popular/popular.component';
 import { HomeComponent } from './home/home.component';
+import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TrendingComponent,
     PopularComponent,
-    HomeComponent
+    HomeComponent,
+    MovieDetailComponent
   ],
   imports: [
     HttpClientModule,

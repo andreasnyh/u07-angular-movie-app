@@ -1,0 +1,18 @@
+<!-- If api call is done -->
+<div *ngIf="movie">
+  <img
+    class="poster-img-solo"
+    src="https://image.tmdb.org/t/p/w400/{{ movie['poster_path'] }}"
+    title="{{ movie['title'] }}"
+    alt="{{ movie['title'] }}"
+  />
+  <p>Original title: {{movie['original_title']}}</p>
+  <p>Title: {{movie['title']}} ({{movie['release_date'] | slice:0:4}})</p>
+  <p>Tagline: "{{movie['tagline']}}"</p>
+  <h3>Genres:</h3>
+  <div *ngFor="let genre of movie['genres']">
+    <p>{{genre['name']}}</p>
+  </div>
+  <h3>Summary:</h3>
+  <p>{{ movie["overview"] }}</p>
+</div>
