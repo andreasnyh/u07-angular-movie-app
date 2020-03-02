@@ -23,14 +23,23 @@ export class ApiService {
     private http: HttpClient
   ) { }
 
-  /** GET heroes from the server */
-  getTrending(): Observable<Movie[]> {
-    return this.http.get<Movie[]>(`${this.baseUrl}/trending/movie/week${this.key}`)
+  getTrending(page: number): Observable<Movie[]> {
+    console.log(`getTrending page: ${page}`);
+
+    return this.http.get<Movie[]>(`${this.baseUrl}/trending/movie/week${this.key}&page=${page}`)
       .pipe(
         tap(_ => console.log('fetched trending')),
         catchError(this.handleError<Movie[]>('getTrending', []))
       );
   }
+
+    getPopular(): Observable<Movie[]> {
+      return this.http.get<Movie[]>(`${this.baseUrl}/movie/popular${this.key}&page=1`)
+        .pipe(
+          tap(_ => console.log('fetched popular')),
+          catchError(this.handleError<Movie[]>('getPopular', []))
+        );
+    }
 
   /**
  * Handle Http operation that failed.

@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.poster-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-flow: wrap;
+}
+
+.poster-img {
+  margin-bottom: 7px;
+  width: 250px;
+}

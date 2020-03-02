@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { ActivatedRoute } from "@angular/router";
 
-import { environment } from "../../environments/environment-api";
 import { Movie } from "../movie";
 import { ApiService } from "../api.service";
 
@@ -12,25 +11,29 @@ import { ApiService } from "../api.service";
 })
 export class TrendingComponent implements OnInit {
 
-  key = environment.apiKey;
-  baseUrl = environment.apiBase;
-  HttpClient: any;
-
   trending: Movie[];
+  page: number;
 
-  constructor(private apiService: ApiService) { }
+
+  constructor(
+    private apiService: ApiService,
+    private route: ActivatedRoute,
+  ) { }
 
   ngOnInit() {
-    this.getTrending();
+    this.getTrending(1);
   }
 
-  getTrending(): void {
-    this.apiService.getTrending()
+  getTrending(page: number): void {
+    // const page = +this.route.snapshot.paramMap.get('page');
+    console.log(page);
+
+    this.apiService.getTrending(page)
       .subscribe((trending) => {
         console.log(trending);
 
         this.trending = trending['results'];
-
+        this.page = trending['page'];
       });
 
   }

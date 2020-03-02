@@ -1,12 +1,23 @@
-<h1>Trending Movies</h1>
+<h1>Trending Movies this week</h1>
 <div class="poster-container">
   <!-- Loop trending movies, limit result with slice -->
-  <div *ngFor="let item of trending | slice: 0:5">
+  <div *ngFor="let item of trending | slice: 0:20">
     <img
       class="poster-img"
-      src="https://image.tmdb.org/t/p/w200/{{ item.poster_path }}"
+      src="https://image.tmdb.org/t/p/w400/{{ item.poster_path }}"
       title="{{ item.title }}"
       alt="{{ item.title }}"
     />
   </div>
+</div>
+
+<div class="page-navigation">
+  <button *ngIf="page > 1" (click)="getTrending(1)" routerLinkActive>
+    First page
+  </button>
+  <button *ngIf="page > 1" (click)="getTrending(page - 1)" routerLinkActive>
+    Last page
+  </button>
+  <a>Page {{ page }}</a>
+  <button (click)="getTrending(page + 1)" routerLinkActive>Next page</button>
 </div>

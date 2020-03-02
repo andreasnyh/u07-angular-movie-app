@@ -5,11 +5,15 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TrendingComponent } from './trending/trending.component';
+import { PopularComponent } from './popular/popular.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TrendingComponent
+    TrendingComponent,
+    PopularComponent,
+    HomeComponent
   ],
   imports: [
     HttpClientModule,
