@@ -9,9 +9,10 @@
   <p>Original title: {{movie['original_title']}}</p>
   <p>Title: {{movie['title']}} ({{movie['release_date'] | slice:0:4}})</p>
   <p>Tagline: "{{movie['tagline']}}"</p>
+  <p>Vote average: {{movie['vote_average']}}</p>
   <h3>Genres:</h3>
   <div *ngFor="let genre of movie['genres']">
-    <p>{{genre['name']}}</p>
+    <span>{{genre['name']}}</span>
   </div>
   <h3>Summary:</h3>
   <p>{{ movie["overview"] }}</p>
