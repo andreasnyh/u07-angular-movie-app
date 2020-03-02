@@ -2,17 +2,21 @@
 <div *ngIf="movie">
   <img
     class="poster-img-solo"
-    src="https://image.tmdb.org/t/p/w400/{{ movie['poster_path'] }}"
+    src="https://image.tmdb.org/t/p/w500/{{ movie['poster_path'] }}"
     title="{{ movie['title'] }}"
     alt="{{ movie['title'] }}"
   />
-  <p>Original title: {{movie['original_title']}}</p>
-  <p>Title: {{movie['title']}} ({{movie['release_date'] | slice:0:4}})</p>
-  <p>Tagline: "{{movie['tagline']}}"</p>
-  <p>Vote average: {{movie['vote_average']}}</p>
+  <!-- if the original title is different from the title, display it -->
+  <p *ngIf="movie['original_title'] !== movie['title']">
+    Original title: {{ movie["original_title"] }}
+  </p>
+
+  <p>Title: {{ movie["title"] }} ({{ movie["release_date"] | slice: 0:4 }})</p>
+  <p>Tagline: "{{ movie["tagline"] }}"</p>
+  <p>Vote average: {{ movie["vote_average"] }}</p>
   <h3>Genres:</h3>
   <div *ngFor="let genre of movie['genres']">
-    <span>{{genre['name']}}</span>
+    <span>{{ genre["name"] }}</span>
   </div>
   <h3>Summary:</h3>
   <p>{{ movie["overview"] }}</p>
