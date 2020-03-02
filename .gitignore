@@ -44,3 +44,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# api key
+./environments/environment-api.ts
+src/environments/environment-api.ts
