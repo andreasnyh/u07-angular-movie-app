@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
+
 import { environment } from "../../environments/environment-api";
+import { Movie } from "../movie";
+import { ApiService } from "../api.service";
 
 @Component({
   selector: 'app-api-test',
@@ -7,14 +11,26 @@ import { environment } from "../../environments/environment-api";
   styleUrls: ['./api-test.component.css']
 })
 export class ApiTestComponent implements OnInit {
+  key = environment.apiKey;
+  baseUrl = environment.apiBase;
+  HttpClient: any;
 
-  constructor() { }
+  trending: Movie[];
 
-  ngOnInit(): void {
-    console.log(environment.apiKey);
+  constructor(private apiService: ApiService) { }
 
+  ngOnInit() {
+    this.getTrending();
   }
 
-  apiKey = environment.apiKey;
+  getTrending(): void {
+    this.apiService.getTrending()
+      .subscribe((trending) => {
+        console.log(trending);
 
+        this.trending = trending['results'];
+
+      });
+
+  }
 }
