@@ -51,6 +51,15 @@ export class ApiService {
       );
   }
 
+  getPeopleDetails(id: number): Observable<any[]> {
+    console.log(`getMovieDetails id: ${id}`);
+    return this.http.get<any[]>(`${this.baseUrl}/person/${id}${this.key}`)
+      .pipe(
+        tap(_ => console.log('fetched person details')),
+        catchError(this.handleError<any[]>('getPersonDetails', []))
+      );
+  }
+
   /* GET Movies, tv-series and people that contains search term */
 searchMulti(term: string): Observable<any> {
   if (!term.trim()) {

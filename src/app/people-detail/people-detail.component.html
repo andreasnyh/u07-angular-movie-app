@@ -1,0 +1,20 @@
+<!-- If api call is done -->
+<div *ngIf="person">
+  <h2>{{ person["name"] }} ({{person['known_for_department']}})</h2>
+  <img
+    class="poster-img-solo"
+    src="https://image.tmdb.org/t/p/w500/{{ person['profile_path'] }}"
+    title="{{ person['name'] }}"
+    alt="Picture of {{ person['name'] }}"
+  />
+
+  <p>Birthday: {{ person["birthday"] }}</p>
+  <p *ngIf="person['deathday']">Died: {{ person['deathday']}}</p>
+  <p>Popularity: {{ person["popularity"] }}</p>
+  <h3>Also known as:</h3>
+  <div *ngFor="let nicks of person['also_known_as']">
+    <span>{{ nicks }}</span>
+  </div>
+  <h3>Biography:</h3>
+  <p>{{ person["biography"] }}</p>
+</div>

@@ -4,6 +4,7 @@ import { TrendingComponent } from './trending/trending.component';
 import { PopularComponent } from './popular/popular.component';
 import { HomeComponent } from "./home/home.component";
 import { MovieDetailComponent } from "./movie-detail/movie-detail.component";
+import { PeopleDetailComponent } from "./people-detail/people-detail.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'trending/:page', component: TrendingComponent },
   { path: 'popular', component: PopularComponent },
   { path: 'detail/:id', component: MovieDetailComponent },
+  { path: 'person/:id', component: PeopleDetailComponent },
 ];
 
 @NgModule({

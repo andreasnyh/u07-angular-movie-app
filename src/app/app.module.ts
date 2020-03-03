@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { PageNavigationComponent } from './page-navigation/page-navigation.component';
 import { SearchComponent } from './search/search.component';
+import { PeopleDetailComponent } from './people-detail/people-detail.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { SearchComponent } from './search/search.component';
     HomeComponent,
     MovieDetailComponent,
     PageNavigationComponent,
-    SearchComponent
+    SearchComponent,
+    PeopleDetailComponent
   ],
   imports: [
     HttpClientModule,
