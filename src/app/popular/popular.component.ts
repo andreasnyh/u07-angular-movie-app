@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from "@angular/router";
+
 import { Movie } from '../movie';
 import { ApiService } from '../api.service';
 
@@ -10,19 +12,26 @@ import { ApiService } from '../api.service';
 export class PopularComponent implements OnInit {
   title = 'Popular';
   popular: Movie[];
+  page: number;
 
-  constructor(private apiService: ApiService) { }
+  constructor(
+    private apiService: ApiService,
+    private route: ActivatedRoute,
+    ) { }
 
   ngOnInit() {
-    this.getPopular();
+    this.getPopular(1);
   }
 
-  getPopular(): void {
-    this.apiService.getPopular()
+  getPopular(page: number): void {
+    console.log(page);
+
+    this.apiService.getPopular(page)
       .subscribe((popular) => {
         console.log(popular);
 
         this.popular = popular['results'];
+        this.page = popular['page'];
 
       });
 

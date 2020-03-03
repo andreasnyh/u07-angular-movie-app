@@ -11,6 +11,7 @@ import { ApiService } from "../api.service";
 })
 export class TrendingComponent implements OnInit {
 
+  title: 'Trending this week';
   trending: Movie[];
   page: number;
 

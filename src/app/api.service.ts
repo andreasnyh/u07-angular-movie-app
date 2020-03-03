@@ -32,8 +32,10 @@ export class ApiService {
       );
   }
 
-  getPopular(): Observable<Movie[]> {
-    return this.http.get<Movie[]>(`${this.baseUrl}/movie/popular${this.key}&page=1`)
+  getPopular(page: number): Observable<Movie[]> {
+    console.log(`getPopular page: ${page}`);
+
+    return this.http.get<Movie[]>(`${this.baseUrl}/movie/popular${this.key}&page=${page}`)
       .pipe(
         tap(_ => console.log('fetched popular')),
         catchError(this.handleError<Movie[]>('getPopular', []))

@@ -8,6 +8,7 @@ import { TrendingComponent } from './trending/trending.component';
 import { PopularComponent } from './popular/popular.component';
 import { HomeComponent } from './home/home.component';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
+import { PageNavigationComponent } from './page-navigation/page-navigation.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { MovieDetailComponent } from './movie-detail/movie-detail.component';
     TrendingComponent,
     PopularComponent,
     HomeComponent,
-    MovieDetailComponent
+    MovieDetailComponent,
+    PageNavigationComponent
   ],
   imports: [
     HttpClientModule,
