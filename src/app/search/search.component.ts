@@ -16,6 +16,8 @@ import { Movie } from "../movie";
 export class SearchComponent implements OnInit {
 
   query$: Observable<any>;
+  results: any[];
+
   private searchTerms = new Subject<string>();
 
   constructor(private apiService: ApiService) {}

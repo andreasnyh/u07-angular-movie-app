@@ -54,10 +54,8 @@ export class ApiService {
   /* GET Movies, tv-series and people that contains search term */
 searchMulti(term: string): Observable<any> {
   if (!term.trim()) {
-    // if not search term, return empty hero array.
     return of([]);
   }
-  // console.log(this.http.get<Movie[]>(`${this.baseUrl}/search/movie/${this.key}&query=${term}`));
 
   return this.http.get<any>(`${this.baseUrl}/search/multi/${this.key}&query=${term}`).pipe(
     tap(x => x.length ?
