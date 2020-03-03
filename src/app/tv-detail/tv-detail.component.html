@@ -1,0 +1,53 @@
+<!-- If api call is done -->
+<div class="root-detail" *ngIf="tv">
+  <img
+  class="bg-img"
+  src="https://image.tmdb.org/t/p/original/{{ tv['backdrop_path'] }}"
+/>
+
+<div class="poster-img-container">
+  <img
+    class="poster-img-solo"
+    src="https://image.tmdb.org/t/p/w500/{{ tv['poster_path'] }}"
+    title="{{ tv['title'] }}"
+    alt="{{ tv['title'] }}"
+  />
+</div>
+
+  <!-- if the original title is different from the title, display it -->
+  <p *ngIf="tv['original_title'] !== tv['title']">
+    Original title: {{ tv["original_title"] }}
+  </p>
+
+  <p>Title: {{ tv["name"] }} ({{ tv["first_air_date"] | slice: 0:4 }})</p>
+  <p></p>
+  <p>Number of seasons: {{ tv["number_of_seasons"] }}</p>
+  <p>Number of episodes: {{ tv["number_of_episodes"] }}</p>
+  <h3>Genres:</h3>
+  <div *ngFor="let genre of tv['genres']">
+    <span>{{ genre["name"] }}</span>
+  </div>
+  <h3>Summary:</h3>
+  <p>{{ tv["overview"] }}</p>
+
+  <!-- Top five cast -->
+  <div *ngIf="tv['credits']['cast'].length">
+    <h3>Cast:</h3>
+    <div class="cast-container">
+      <div
+        class="actor-card"
+        *ngFor="let cast of tv['credits']['cast'] | slice: 0:5"
+      >
+        <a routerLink="/person/{{ cast['id'] }}">
+          <img
+            class="poster-img-solo"
+            src="https://image.tmdb.org/t/p/w200/{{ cast['profile_path'] }}"
+            title="{{ cast['name'] }}"
+            alt="{{ cast['name'] }}"
+          />
+          <p>{{ cast["name"] }}</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

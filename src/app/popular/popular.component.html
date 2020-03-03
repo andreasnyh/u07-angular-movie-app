@@ -2,7 +2,7 @@
 <div class="poster-container">
   <!-- Loop Popular movies, limit result with slice -->
   <div *ngFor="let item of popular | slice: 0:20">
-    <a routerLink="/detail/{{ item.id }}">
+    <a routerLink="/movie/{{ item.id }}">
       <img
         class="poster-img"
         src="https://image.tmdb.org/t/p/w400/{{ item.poster_path }}"

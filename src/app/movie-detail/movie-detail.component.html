@@ -1,23 +1,52 @@
 <!-- If api call is done -->
 <div *ngIf="movie">
+
+  <img
+  class="bg-img"
+  src="https://image.tmdb.org/t/p/original/{{ movie['backdrop_path'] }}"
+/>
+
+<div class="poster-img-container">
   <img
     class="poster-img-solo"
     src="https://image.tmdb.org/t/p/w500/{{ movie['poster_path'] }}"
     title="{{ movie['title'] }}"
     alt="{{ movie['title'] }}"
   />
+</div>
+
   <!-- if the original title is different from the title, display it -->
   <p *ngIf="movie['original_title'] !== movie['title']">
     Original title: {{ movie["original_title"] }}
   </p>
 
   <p>Title: {{ movie["title"] }} ({{ movie["release_date"] | slice: 0:4 }})</p>
-  <p>Tagline: "{{ movie["tagline"] }}"</p>
+  <p *ngIf="movie['tagline']">Tagline: "{{ movie["tagline"] }}"</p>
   <p>Vote average: {{ movie["vote_average"] }}</p>
-  <h3>Genres:</h3>
-  <div *ngFor="let genre of movie['genres']">
-    <span>{{ genre["name"] }}</span>
+
+  <!-- List of applicable genres -->
+  <div *ngIf="movie['genres'].length">
+    <h3>Genres:</h3>
+    <div *ngFor="let genre of movie['genres']">
+      <span>{{ genre["name"] }}</span>
+    </div>
   </div>
-  <h3>Summary:</h3>
-  <p>{{ movie["overview"] }}</p>
+
+  <!-- Summary plot -->
+  <div *ngIf="movie['overview'].length">
+    <h3>Summary:</h3>
+    <p>{{ movie["overview"] }}</p>
+  </div>
+
+  <!-- Top five cast -->
+  <div *ngIf="movie['credits']['cast'].length">
+    <h3>Cast:</h3>
+    <div *ngFor="let cast of movie['credits']['cast'] | slice: 0:5">
+      <a routerLink="/person/{{ cast['id'] }}">
+
+
+        <p>{{ cast["name"] }}</p>
+      </a>
+    </div>
+  </div>
 </div>

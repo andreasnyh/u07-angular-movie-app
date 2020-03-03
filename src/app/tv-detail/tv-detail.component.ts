@@ -3,14 +3,14 @@ import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../api.service';
 
 @Component({
-  selector: 'app-people-detail',
-  templateUrl: './people-detail.component.html',
-  styleUrls: ['./people-detail.component.css']
+  selector: 'app-tv-detail',
+  templateUrl: './tv-detail.component.html',
+  styleUrls: ['./tv-detail.component.css']
 })
 
-export class PeopleDetailComponent implements OnInit {
+export class TvDetailComponent implements OnInit {
 
-  person: any;
+  tv: any;
 
   constructor(
     private apiService: ApiService,
@@ -18,15 +18,15 @@ export class PeopleDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getPersonDetails();
+    this.getTvDetails();
   }
 
-  getPersonDetails(): void {
+  getTvDetails(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     console.log(id);
 
-    this.apiService.getPeopleDetails(id)
-      .subscribe(person => this.person = person);
+    this.apiService.getTvDetails(id)
+      .subscribe(tv => this.tv = tv);
   };
-}
 
+}

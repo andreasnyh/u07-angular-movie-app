@@ -13,7 +13,7 @@ import { Movie } from './movie';
 export class ApiService {
 
   private baseUrl = environment.apiBase;  // URL to web api
-  private key = environment.apiKey;  // URL to web api key
+  private key = environment.apiKey;  // URL to web api key | Replace the value with your own
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -27,7 +27,7 @@ export class ApiService {
     console.log(`getTrending page: ${page}`);
     return this.http.get<Movie[]>(`${this.baseUrl}/trending/movie/week${this.key}&page=${page}`)
       .pipe(
-        tap(_ => console.log('fetched trending')),
+        tap( _ => console.log('fetched trending')),
         catchError(this.handleError<Movie[]>('getTrending', []))
       );
   }
@@ -37,16 +37,16 @@ export class ApiService {
 
     return this.http.get<Movie[]>(`${this.baseUrl}/movie/popular${this.key}&page=${page}`)
       .pipe(
-        tap(_ => console.log('fetched popular')),
+        tap( _ => console.log('fetched popular')),
         catchError(this.handleError<Movie[]>('getPopular', []))
       );
   }
 
   getMovieDetails(id: number): Observable<Movie[]> {
     console.log(`getMovieDetails id: ${id}`);
-    return this.http.get<Movie[]>(`${this.baseUrl}/movie/${id}${this.key}`)
+    return this.http.get<Movie[]>(`${this.baseUrl}/movie/${id}${this.key}&append_to_response=credits`)
       .pipe(
-        tap(_ => console.log('fetched movie details')),
+        tap( _ => console.log('fetched movie details')),
         catchError(this.handleError<Movie[]>('getMovieDetails', []))
       );
   }
@@ -55,9 +55,17 @@ export class ApiService {
     console.log(`getMovieDetails id: ${id}`);
     return this.http.get<any[]>(`${this.baseUrl}/person/${id}${this.key}`)
       .pipe(
-        tap(_ => console.log('fetched person details')),
+        tap( _ => console.log('fetched person details')),
         catchError(this.handleError<any[]>('getPersonDetails', []))
       );
+  }
+
+  getTvDetails(id: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/tv/${id}${this.key}&append_to_response=credits`)
+    .pipe(
+      tap( _ => console.log('fetched tv details')),
+      catchError(this.handleError<any[]>('getTvDetails', []))
+    );
   }
 
   /* GET Movies, tv-series and people that contains search term */

@@ -1,6 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 * {
   font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.root-detail {
+}
+
+.bg-img {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  max-height: 750px;
 }
 
 .poster-container {
@@ -13,4 +31,19 @@
 .poster-img {
   margin-bottom: 7px;
   width: 250px;
+}
+
+.poster-img-container {
+  display: flex;
+  justify-content: center;
+}
+
+.actor-card {
+  margin: 10px;
+  text-align: center;
+}
+
+.cast-container {
+  display: flex;
+  justify-content: space-evenly;
 }

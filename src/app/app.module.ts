@@ -11,6 +11,7 @@ import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { PageNavigationComponent } from './page-navigation/page-navigation.component';
 import { SearchComponent } from './search/search.component';
 import { PeopleDetailComponent } from './people-detail/people-detail.component';
+import { TvDetailComponent } from './tv-detail/tv-detail.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { PeopleDetailComponent } from './people-detail/people-detail.component';
     MovieDetailComponent,
     PageNavigationComponent,
     SearchComponent,
-    PeopleDetailComponent
+    PeopleDetailComponent,
+    TvDetailComponent
   ],
   imports: [
     HttpClientModule,
