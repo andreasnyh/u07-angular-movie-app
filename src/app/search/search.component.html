@@ -1,0 +1,19 @@
+<div id="search-component">
+  <h4><label for="search-box">Search</label></h4>
+
+  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+<!-- *ngIf="(query$ | async) != null" -->
+  <ul class="search-result" >
+    <li *ngFor="let result of (query$ | async).results">
+      <a *ngIf="result.title; else elseBlock"
+        routerLink="/detail/{{ result.id }}" >
+        {{ result.title }}
+      </a>
+      <ng-template #elseBlock>
+        <a routerLink="/detail/{{ result.id }}">
+          {{ result.name }}
+        </a>
+      </ng-template>
+    </li>
+  </ul>
+</div>

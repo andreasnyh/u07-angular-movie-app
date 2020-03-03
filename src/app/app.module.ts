@@ -9,6 +9,7 @@ import { PopularComponent } from './popular/popular.component';
 import { HomeComponent } from './home/home.component';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { PageNavigationComponent } from './page-navigation/page-navigation.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { PageNavigationComponent } from './page-navigation/page-navigation.compo
     PopularComponent,
     HomeComponent,
     MovieDetailComponent,
-    PageNavigationComponent
+    PageNavigationComponent,
+    SearchComponent
   ],
   imports: [
     HttpClientModule,

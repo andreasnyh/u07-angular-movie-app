@@ -51,6 +51,22 @@ export class ApiService {
       );
   }
 
+  /* GET Movies, tv-series and people that contains search term */
+searchMulti(term: string): Observable<any> {
+  if (!term.trim()) {
+    // if not search term, return empty hero array.
+    return of([]);
+  }
+  // console.log(this.http.get<Movie[]>(`${this.baseUrl}/search/movie/${this.key}&query=${term}`));
+
+  return this.http.get<any>(`${this.baseUrl}/search/multi/${this.key}&query=${term}`).pipe(
+    tap(x => x.length ?
+      console.log(`found results matching "${term}"`) :
+      console.log(`no results matching "${term}"`)),
+    catchError(this.handleError<any>('searchMulti', []))
+  );
+}
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.
