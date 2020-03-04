@@ -5,7 +5,7 @@ import { ApiService } from '../api.service';
 @Component({
   selector: 'app-people-detail',
   templateUrl: './people-detail.component.html',
-  styleUrls: ['./people-detail.component.css']
+  styleUrls: ['./people-detail.component.scss']
 })
 
 export class PeopleDetailComponent implements OnInit {

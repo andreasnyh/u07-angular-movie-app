@@ -7,7 +7,7 @@ import { ApiService } from '../api.service';
 @Component({
   selector: 'app-popular',
   templateUrl: './popular.component.html',
-  styleUrls: ['./popular.component.css']
+  styleUrls: ['./popular.component.scss']
 })
 export class PopularComponent implements OnInit {
   title = 'Popular';
