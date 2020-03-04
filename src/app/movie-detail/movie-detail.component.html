@@ -40,13 +40,21 @@
 
   <!-- Top five cast -->
   <div *ngIf="movie['credits']['cast'].length">
+
     <h3>Cast:</h3>
-    <div *ngFor="let cast of movie['credits']['cast'] | slice: 0:5">
-      <a routerLink="/person/{{ cast['id'] }}">
+      <div class="cast-container">
+      <div class="actor-card" *ngFor="let cast of movie['credits']['cast'] | slice: 0:5">
+        <a routerLink="/person/{{ cast['id'] }}">
+          <img
+          class="poster-img-solo"
+          src="https://image.tmdb.org/t/p/w200/{{ cast['profile_path'] }}"
+          title="{{ cast['name'] }}"
+          alt="{{ cast['name'] }}"
+        />
 
-
-        <p>{{ cast["name"] }}</p>
-      </a>
-    </div>
+          <p>{{ cast["name"] }}</p>
+        </a>
+      </div>
+</div>
   </div>
 </div>

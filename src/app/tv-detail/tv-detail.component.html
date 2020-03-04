@@ -1,18 +1,18 @@
 <!-- If api call is done -->
 <div class="root-detail" *ngIf="tv">
-  <img
-  class="bg-img"
-  src="https://image.tmdb.org/t/p/original/{{ tv['backdrop_path'] }}"
-/>
+    <img
+      class="bg-img"
+      src="https://image.tmdb.org/t/p/original/{{ tv['backdrop_path'] }}"
+    />
 
-<div class="poster-img-container">
-  <img
-    class="poster-img-solo"
-    src="https://image.tmdb.org/t/p/w500/{{ tv['poster_path'] }}"
-    title="{{ tv['title'] }}"
-    alt="{{ tv['title'] }}"
-  />
-</div>
+    <div class="poster-img-container">
+      <img
+        class="poster-img-solo"
+        src="https://image.tmdb.org/t/p/w500/{{ tv['poster_path'] }}"
+        title="{{ tv['title'] }}"
+        alt="{{ tv['title'] }}"
+      />
+    </div>
 
   <!-- if the original title is different from the title, display it -->
   <p *ngIf="tv['original_title'] !== tv['title']">
