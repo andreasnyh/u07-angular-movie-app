@@ -11,6 +11,7 @@ import { ApiService } from '../api.service';
 export class PeopleDetailComponent implements OnInit {
 
   person: any;
+  credits: any;
 
   constructor(
     private apiService: ApiService,
@@ -26,7 +27,11 @@ export class PeopleDetailComponent implements OnInit {
     console.log(id);
 
     this.apiService.getPeopleDetails(id)
-      .subscribe(person => this.person = person);
-  };
-}
+      .subscribe((person) => {
+        this.person = person;
+        this.credits = person['combined_credits']['cast'].sort(function (a, b) {
+          return b.vote_average - a.vote_average;
+        });
+  });
+}}
 

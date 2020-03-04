@@ -1,29 +1,51 @@
 <!-- If api call is done -->
 <div *ngIf="person">
   <div>
-    <h2>{{ person["name"] }} ({{ person["known_for_department"] }})</h2>
-    <div *ngIf="person['profile_path']">
+    <h2>{{ person.name }} ({{ person.known_for_department }})</h2>
+    <div *ngIf="person.profile_path">
       <img
         class="poster-img-solo"
-        src="https://image.tmdb.org/t/p/w500/{{ person['profile_path'] }}"
-        title="{{ person['name'] }}"
-        alt="Picture of {{ person['name'] }}"
+        src="https://image.tmdb.org/t/p/w500/{{ person.profile_path }}"
+        title="{{ person.name }}"
+        alt="Picture of {{ person.name }}"
       />
     </div>
 
-    <p *ngIf="person['birthday']">Birthday: {{ person["birthday"] }}</p>
-    <p *ngIf="person['deathday']">Died: {{ person["deathday"] }}</p>
-    <p *ngIf="person['popularity']">Popularity: {{ person["popularity"] }}</p>
+    <p *ngIf="person.birthday">Birthday: {{ person.birthday }}</p>
+    <p *ngIf="person.deathday">Died: {{ person.deathday }}</p>
+    <p *ngIf="person.popularity">Popularity: {{ person.popularity }}</p>
 
-    <div *ngIf="person['also_known_as'].length">
+    <div *ngIf="person.also_known_as.length">
       <h3>Also known as:</h3>
-      <div *ngFor="let nicks of person['also_known_as']">
+      <div *ngFor="let nicks of person.also_known_as">
         <span>{{ nicks }}</span>
       </div>
     </div>
-    <div  *ngIf="person['biography'].length">
+
+    <ng-container *ngIf="credits.length">
+      <div *ngIf="person.gender == 1">
+        <h3>Some of her top rated appearances:</h3>
+      </div>
+      <div *ngIf="person.gender == 2">
+        <h3>Some of his top rated appearances:</h3>
+      </div>
+      <div *ngIf="person.gender == 0">
+        <h3>Some top rated appearances:</h3>
+      </div>
+
+      <div *ngFor="let roles of credits | slice:0:10">
+        <ng-container *ngIf="roles.title">
+          <span><strong>{{ roles.title }}</strong> as <strong>{{ roles.character }}</strong> with score <strong>{{ roles.vote_average }}</strong></span>
+        </ng-container>
+        <ng-container *ngIf="roles.name">
+          <span><strong>{{ roles.name }}</strong> as <strong>{{ roles.character }}</strong> with score <strong>{{ roles.vote_average }}</strong></span>
+        </ng-container>
+      </div>
+    </ng-container>
+
+    <div *ngIf="person.biography.length">
       <h3>Biography:</h3>
-      <p>{{ person["biography"] }}</p>
+      <p>{{ person.biography }}</p>
     </div>
   </div>
 </div>
