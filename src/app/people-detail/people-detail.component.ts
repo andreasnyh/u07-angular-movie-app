@@ -32,6 +32,7 @@ export class PeopleDetailComponent implements OnInit {
         this.credits = person['combined_credits']['cast'].sort(function (a, b) {
           return b.vote_average - a.vote_average;
         });
-  });
-}}
+      });
+  }
+}
 

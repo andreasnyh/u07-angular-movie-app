@@ -47,3 +47,17 @@ html, body {
   display: flex;
   justify-content: space-evenly;
 }
+
+.actor-detail-cast-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.actor-detail-movie-card {
+  margin: 10px;
+  text-align: center;
+  width: 250px;
+}
+
+

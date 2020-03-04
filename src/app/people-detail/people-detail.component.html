@@ -35,30 +35,63 @@
         <h3>Some top rated appearances:</h3>
       </div>
 
-      <!-- Loop over the roles in credits -->
-      <div *ngFor="let roles of credits | slice: 0:10">
-        <!-- If title ==> this is a movie -->
-        <ng-container *ngIf="roles.title">
-          <span>
-            <a routerLink="/movie/{{roles.id}}">
+      <div class="actor-detail-cast-container">
+        <!-- Loop over the roles in credits -->
+        <div *ngFor="let roles of credits | slice: 0:10">
+          <!-- If title ==> this is a movie -->
+          <ng-container *ngIf="roles.title">
+            <div class="actor-detail-movie-card">
+              <a routerLink="/movie/{{ roles.id }}">
+                <img
+                  *ngIf="roles.poster_path"
+                  class="people-detail-poster"
+                  src="https://image.tmdb.org/t/p/w200/{{ roles.poster_path }}"
+                  title="{{ roles.title }}"
+                  alt="{{ roles.title }}"
+                />
+                <p>
+                  <strong>{{ roles.title }}</strong>
+                </p>
+              </a>
+              <span>
+                as <br>
+                <strong *ngIf="roles.character.length; else unnamed">{{ roles.character }}</strong>
+                <ng-template #unnamed>
+                  <strong>Unnamed</strong>
+                </ng-template>
+                <br> with score <br>
+                <strong>{{ roles.vote_average }}</strong>
+              </span>
+            </div>
+          </ng-container>
 
-            <strong>{{ roles.title }}</strong>
-          </a>
-           as <strong>{{ roles.character }}</strong> with score
-            <strong>{{ roles.vote_average }}</strong>
-          </span>
-        </ng-container>
-
-        <!-- If name ==> this is another appearance -->
-        <ng-container *ngIf="roles.name">
-          <span>
-            <a routerLink="/tv/{{roles.id}}">
-              <strong>{{ roles.name }}</strong>
-            </a>
-            as <strong>{{ roles.character }}</strong> with score
-            <strong>{{ roles.vote_average }}</strong>
-          </span>
-        </ng-container>
+          <!-- If name ==> this is another appearance -->
+          <ng-container *ngIf="roles.name">
+            <div class="actor-detail-movie-card">
+              <a routerLink="/tv/{{ roles.id }}">
+                <img
+                  *ngIf="roles.poster_path"
+                  class="people-detail-poster"
+                  src="https://image.tmdb.org/t/p/w200/{{ roles.poster_path }}"
+                  title="{{ roles.name }}"
+                  alt="{{ roles.name }}"
+                />
+                <p>
+                  <strong>{{ roles.name }}</strong>
+                </p>
+              </a>
+              <span>
+                as <br>
+                <strong *ngIf="roles.character.length; else unnamed">{{ roles.character }}</strong>
+                <ng-template #unnamed>
+                  <strong>Unnamed</strong>
+                </ng-template>
+                <br> with score <br>
+                <strong>{{ roles.vote_average }}</strong>
+              </span>
+            </div>
+          </ng-container>
+        </div>
       </div>
     </ng-container>
 
