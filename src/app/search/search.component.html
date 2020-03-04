@@ -1,0 +1,35 @@
+<div id="search-component">
+  <h4><label for="search-box">Search</label></h4>
+
+  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+  <!-- *ngIf="(query$ | async) != null" -->
+  <ul class="search-result">
+    <li *ngFor="let result of (query$ | async).results">
+      <a
+        *ngIf="result.media_type == 'movie'"
+        routerLink="/movie/{{ result.id }}"
+      >
+        {{ result.title }}
+        <span class="category_year">
+          (🎥 {{ result.media_type }} {{ result.release_date | slice: 0:4 }})
+        </span>
+      </a>
+
+      <a *ngIf="result.media_type == 'tv'" routerLink="/tv/{{ result.id }}">
+        {{ result.name }}
+        <span class="category_year">
+          (📺 {{ result.media_type | uppercase }},
+          {{ result.first_air_date | slice: 0:4 }})
+        </span>
+      </a>
+
+      <a
+        *ngIf="result.media_type == 'person'"
+        routerLink="/person/{{ result.id }}"
+      >
+        {{ result.name }}
+        <span class="category_year"> ({{ result.known_for_department }} {{ result.birthday | slice:0:4 }}) </span>
+      </a>
+    </li>
+  </ul>
+</div>

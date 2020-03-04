@@ -8,6 +8,10 @@ import { TrendingComponent } from './trending/trending.component';
 import { PopularComponent } from './popular/popular.component';
 import { HomeComponent } from './home/home.component';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
+import { PageNavigationComponent } from './page-navigation/page-navigation.component';
+import { SearchComponent } from './search/search.component';
+import { PeopleDetailComponent } from './people-detail/people-detail.component';
+import { TvDetailComponent } from './tv-detail/tv-detail.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +19,11 @@ import { MovieDetailComponent } from './movie-detail/movie-detail.component';
     TrendingComponent,
     PopularComponent,
     HomeComponent,
-    MovieDetailComponent
+    MovieDetailComponent,
+    PageNavigationComponent,
+    SearchComponent,
+    PeopleDetailComponent,
+    TvDetailComponent
   ],
   imports: [
     HttpClientModule,
