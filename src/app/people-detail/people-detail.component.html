@@ -40,8 +40,11 @@
         <!-- If title ==> this is a movie -->
         <ng-container *ngIf="roles.title">
           <span>
-            <strong>{{ roles.title }}</strong> as
-            <strong>{{ roles.character }}</strong> with score
+            <a routerLink="/movie/{{roles.id}}">
+
+            <strong>{{ roles.title }}</strong>
+          </a>
+           as <strong>{{ roles.character }}</strong> with score
             <strong>{{ roles.vote_average }}</strong>
           </span>
         </ng-container>
@@ -49,8 +52,10 @@
         <!-- If name ==> this is another appearance -->
         <ng-container *ngIf="roles.name">
           <span>
-            <strong>{{ roles.name }}</strong> as
-            <strong>{{ roles.character }}</strong> with score
+            <a routerLink="/tv/{{roles.id}}">
+              <strong>{{ roles.name }}</strong>
+            </a>
+            as <strong>{{ roles.character }}</strong> with score
             <strong>{{ roles.vote_average }}</strong>
           </span>
         </ng-container>
