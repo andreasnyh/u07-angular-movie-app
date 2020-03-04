@@ -22,7 +22,9 @@
       </div>
     </div>
 
+    <!-- Are there credits -->
     <ng-container *ngIf="credits.length">
+      <!-- Gender check on h3 -->
       <div *ngIf="person.gender == 1">
         <h3>Some of her top rated appearances:</h3>
       </div>
@@ -33,16 +35,29 @@
         <h3>Some top rated appearances:</h3>
       </div>
 
-      <div *ngFor="let roles of credits | slice:0:10">
+      <!-- Loop over the roles in credits -->
+      <div *ngFor="let roles of credits | slice: 0:10">
+        <!-- If title ==> this is a movie -->
         <ng-container *ngIf="roles.title">
-          <span><strong>{{ roles.title }}</strong> as <strong>{{ roles.character }}</strong> with score <strong>{{ roles.vote_average }}</strong></span>
+          <span>
+            <strong>{{ roles.title }}</strong> as
+            <strong>{{ roles.character }}</strong> with score
+            <strong>{{ roles.vote_average }}</strong>
+          </span>
         </ng-container>
+
+        <!-- If name ==> this is another appearance -->
         <ng-container *ngIf="roles.name">
-          <span><strong>{{ roles.name }}</strong> as <strong>{{ roles.character }}</strong> with score <strong>{{ roles.vote_average }}</strong></span>
+          <span>
+            <strong>{{ roles.name }}</strong> as
+            <strong>{{ roles.character }}</strong> with score
+            <strong>{{ roles.vote_average }}</strong>
+          </span>
         </ng-container>
       </div>
     </ng-container>
 
+    <!-- Bio about the person -->
     <div *ngIf="person.biography.length">
       <h3>Biography:</h3>
       <p>{{ person.biography }}</p>
