@@ -13,6 +13,7 @@ import { PageNavigationComponent } from './page-navigation/page-navigation.compo
 import { SearchComponent } from './search/search.component';
 import { PeopleDetailComponent } from './people-detail/people-detail.component';
 import { TvDetailComponent } from './tv-detail/tv-detail.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { TvDetailComponent } from './tv-detail/tv-detail.component';
     PageNavigationComponent,
     SearchComponent,
     PeopleDetailComponent,
-    TvDetailComponent
+    TvDetailComponent,
+    NavBarComponent
   ],
   imports: [
     HttpClientModule,

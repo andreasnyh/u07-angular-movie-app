@@ -1,14 +1,3 @@
-<!-- <nav>
-  <a routerLink="">Home</a>
-  <a routerLink="/trending/1">{{ "trending movies this week" | titlecase }}</a>
-  <a routerLink="/popular/1">{{ "popular" | titlecase }}</a>
-</nav>
- -->
-<nav class="nav justify-content-center grey lighten-4 py-4">
-  <a class="nav-link active" routerLink="">Home</a>
-  <a class="nav-link" routerLink="/trending/1">Trending</a>
-  <a class="nav-link" routerLink="/popular/1">Popular</a>
-  <!-- <a class="nav-link disabled" href="#">Disabled</a> -->
-</nav>
-
+<app-nav-bar></app-nav-bar>
+<app-search></app-search>
 <router-outlet></router-outlet>
