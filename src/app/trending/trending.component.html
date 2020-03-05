@@ -1,28 +1,43 @@
-<h1>Trending Movies this week</h1>
-<div class="poster-container">
-  <!-- Loop trending movies, limit result with slice -->
-  <div *ngFor="let item of trending | slice: 0:20">
-    <a routerLink="/movie/{{item.id}}">
-    <img
-      class="poster-img"
-      src="https://image.tmdb.org/t/p/w400/{{ item.poster_path }}"
-      title="{{ item.title }}"
-      alt="{{ item.title }}"
-    />
-  </a>
+<h1 class="h1">Trending Movies this week</h1>
+
+<div class="container-fluid posters">
+  <div class="row">
+    <!-- Loop trending movies, limit result with slice -->
+    <div class="col-xl-3 col-md-4" *ngFor="let item of trending | slice: 0:20">
+      <a routerLink="/movie/{{ item.id }}">
+        <img
+          class="poster-img my-3"
+          src="https://image.tmdb.org/t/p/w400/{{ item.poster_path }}"
+          title="{{ item.title }}"
+          alt="{{ item.title }}"
+        />
+      </a>
+    </div>
   </div>
 </div>
 
 <!-- Implement this -->
 <!-- <app-page-navigation></app-page-navigation> -->
 
-<div class="page-navigation">
-  <button *ngIf="page > 1" (click)="getTrending(1)" routerLinkActive>
-    First page
-  </button>
-  <button *ngIf="page > 1" (click)="getTrending(page - 1)" routerLinkActive>
-    Last page
-  </button>
-  <a>Page {{ page }}</a>
-  <button (click)="getTrending(page + 1)" routerLinkActive>Next page</button>
+<div class="page-navigation container-fluid my-3">
+  <div class="row">
+    <div class="col"></div>
+    <!-- Spacer -->
+    <div class="col-sm-10 col-md-3">
+      <button class="col-4" *ngIf="page > 0; else buttonActive" disabled>
+        Previous page
+      </button>
+      <ng-template #buttonActive>
+        <button class="col-4" (click)="getTrending(page - 1)" routerLinkActive>
+          Previous page
+        </button>
+      </ng-template>
+      <span class="col-4">Page {{ page }}</span>
+      <button class="col-4" (click)="getTrending(page + 1)" routerLinkActive>
+        Next page
+      </button>
+    </div>
+    <div class="col"></div>
+    <!-- Spacer -->
+  </div>
 </div>
