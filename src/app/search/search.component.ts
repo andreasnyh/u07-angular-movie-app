@@ -6,7 +6,6 @@ import {
  } from 'rxjs/operators';
 
 import { ApiService } from "../api.service";
-import { Movie } from "../movie";
 
 @Component({
   selector: 'app-search',

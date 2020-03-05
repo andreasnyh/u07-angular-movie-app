@@ -1,7 +1,7 @@
 
 <div class="container">
   <!-- Search form -->
-  <form class="form-inline md-form form-sm w-50 m-auto">
+  <form class="hide form-inline md-form form-sm w-50 m-auto">
     <!-- <i aria-hidden="true" class="fas fa-search"></i> -->
     <input
       class="form-control form-control-sm ml-0 w-100"
@@ -16,7 +16,7 @@
     <!-- Search results -->
     <ul class="search-result pl-0 w-100">
       <li
-        class="list-group-item p-1"
+        class="hide-item list-group-item p-1"
         *ngFor="let result of (query$ | async).results"
       >
         <!-- If it's a movie -->

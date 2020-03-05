@@ -1,5 +1,5 @@
 input{
-  padding-left: 2rem !important;
+  padding-left: 38px !important;
 }
 
 ul{
@@ -7,3 +7,11 @@ ul{
   top: 3rem;
 }
 
+/* hide element */
+.hide:focus-within .hide-item {
+  opacity: 100%;
+}
+
+.hide .hide-item {
+  opacity: 0;
+}
