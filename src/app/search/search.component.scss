@@ -2,6 +2,12 @@ form.md-form {
   width: 100%;
 }
 
+ul.search-result{
+  position: absolute;
+  top: 3rem;
+  z-index: 1;
+}
+
 /* hide element */
 .hide:focus-within .hide-item {
   opacity: 100%;
@@ -22,10 +28,6 @@ input{
   padding-left: 38px !important;
 }
 
-ul{
-  position: absolute;
-  top: 3rem;
-  z-index: 1;
-}
+
 
  }

@@ -26,7 +26,7 @@
 
   <!-- List of applicable genres -->
   <div *ngIf="movie['genres'].length">
-    <h3>Genres:</h3>
+    <h3 class="h3-responsive">Genres:</h3>
     <div *ngFor="let genre of movie['genres']">
       <span>{{ genre["name"] }}</span>
     </div>
@@ -34,14 +34,14 @@
 
   <!-- Summary plot -->
   <div *ngIf="movie['overview'].length">
-    <h3>Summary:</h3>
+    <h3 class="h3-responsive">Summary:</h3>
     <p>{{ movie["overview"] }}</p>
   </div>
 
   <!-- Top five cast -->
   <div *ngIf="movie['credits']['cast'].length">
 
-    <h3>Cast:</h3>
+    <h3 class="h3-responsive">Cast:</h3>
       <div class="cast-container">
       <div class="actor-card" *ngFor="let cast of movie['credits']['cast'] | slice: 0:5">
         <a routerLink="/person/{{ cast['id'] }}">

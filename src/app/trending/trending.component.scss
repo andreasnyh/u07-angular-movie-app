@@ -15,3 +15,15 @@ img.poster-img {
 .page-navigation {
   justify-content: center;
 }
+
+.page-navigation button {
+  font-size: .7rem;
+}
+
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .page-navigation button {
+    font-size: 1rem;
+  }
+}

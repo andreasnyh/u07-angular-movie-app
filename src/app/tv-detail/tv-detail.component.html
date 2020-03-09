@@ -23,16 +23,16 @@
   <p></p>
   <p>Number of seasons: {{ tv["number_of_seasons"] }}</p>
   <p>Number of episodes: {{ tv["number_of_episodes"] }}</p>
-  <h3>Genres:</h3>
+  <h3 class="h3-responsive">Genres:</h3>
   <div *ngFor="let genre of tv['genres']">
     <span>{{ genre["name"] }}</span>
   </div>
-  <h3>Summary:</h3>
+  <h3 class="h3-responsive">Summary:</h3>
   <p>{{ tv["overview"] }}</p>
 
   <!-- Top five cast -->
   <div *ngIf="tv['credits']['cast'].length">
-    <h3>Cast:</h3>
+    <h3 class="h3-responsive">Cast:</h3>
     <div class="cast-container">
       <div
         class="actor-card"

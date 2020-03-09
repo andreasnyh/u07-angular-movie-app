@@ -14,6 +14,7 @@ export class TrendingComponent implements OnInit {
   title: 'Trending this week';
   trending: Movie[];
   page: number;
+  totalPages: number;
 
 
   constructor(
@@ -31,10 +32,11 @@ export class TrendingComponent implements OnInit {
 
     this.apiService.getTrending(page)
       .subscribe((trending) => {
-        console.log(trending);
+        // console.log(trending);
 
         this.trending = trending['results'];
         this.page = trending['page'];
+        this.totalPages = trending['total_pages'];
       });
 
   }

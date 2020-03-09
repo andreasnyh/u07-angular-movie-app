@@ -1,12 +1,12 @@
-<h1 class="h1-responsive">Trending Movies this week</h1>
+<h1 class="title text-center h1-responsive">Trending Movies this week</h1>
 
 <div class="container-fluid posters">
   <div class="row">
     <!-- Loop trending movies, limit result with slice -->
-    <div class="col-6 col-md-2" *ngFor="let item of trending | slice: 0:20">
+    <div class="col-6 col-md-2 my-2 px-2 px-md-4 " *ngFor="let item of trending | slice: 0:18">
       <a routerLink="/movie/{{ item.id }}">
         <img
-          class="poster-img my-3"
+          class="poster-img"
           src="https://image.tmdb.org/t/p/w400/{{ item.poster_path }}"
           title="{{ item.title }}"
           alt="{{ item.title }}"
@@ -20,24 +20,31 @@
 <!-- <app-page-navigation></app-page-navigation> -->
 
 <div class="page-navigation container-fluid my-3">
-  <div class="row">
-    <div class="col"></div>
+  <div class="row justify-content-center align-items-center px-3">
+
     <!-- Spacer -->
-    <div class="col-sm-10 col-md-3">
-      <button class="col-4" *ngIf="page > 0; else buttonActive" disabled>
-        Previous page
+    <!-- <div class="col"></div> -->
+
+    <!-- <div class="col-12 col-md-3"> -->
+      <button type="button" class="btn btn-primary col-4 col-md-2" *ngIf="page <= 1; else buttonActive" disabled>
+        <i class="fas fa-angle-double-left"></i>&nbsp; Previous page
       </button>
       <ng-template #buttonActive>
-        <button class="col-4" (click)="getTrending(page - 1)" routerLinkActive>
-          Previous page
+        <button type="button" class="btn btn-primary col-4 col-md-2" (click)="getTrending(page - 1)" routerLinkActive>
+          <i class="fas fa-angle-double-left"></i>&nbsp; Previous page
         </button>
       </ng-template>
-      <span class="col-4">Page {{ page }}</span>
-      <button class="col-4" (click)="getTrending(page + 1)" routerLinkActive>
-        Next page
+
+      <div class="col-4 col-md-2">
+        <span class="current-page">Page {{ page }}<br> of <br>{{ totalPages }}</span>
+      </div>
+
+      <button type="button" class="btn btn-primary col-4 col-md-2" (click)="getTrending(page + 1)" routerLinkActive>
+        Next page &nbsp;<i class="fas fa-angle-double-right"></i>
       </button>
     </div>
-    <div class="col"></div>
+
     <!-- Spacer -->
-  </div>
+    <!-- <div class="col"></div> -->
+  <!-- </div> -->
 </div>

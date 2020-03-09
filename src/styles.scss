@@ -66,3 +66,15 @@ body {
   width: 250px;
 }
  */
+
+ .page-navigation {
+  font-size: .75rem;
+}
+
+
+  // Medium devices (tablets, 768px and up)
+  @media (min-width: 768px) {
+    .page-navigation {
+      font-size: 1rem;
+    }
+  }
