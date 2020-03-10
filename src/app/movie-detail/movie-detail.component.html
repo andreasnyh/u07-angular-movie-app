@@ -2,14 +2,16 @@
 <div class="container-fluid " *ngIf="movie">
   <!-- Images -->
   <div class="container-fluid position-relative">
-    <img *ngIf="movie['backdrop_path']"
+    <img
+      *ngIf="movie['backdrop_path']"
       class="bg-img"
-      src="https://image.tmdb.org/t/p/original/{{ movie['backdrop_path'] }}"
+      src="https://image.tmdb.org/t/p/w1280{{ movie['backdrop_path'] }}"
     />
 
-    <img *ngIf="movie['poster_path']"
+    <img
+      *ngIf="movie['poster_path']"
       class="poster-img-single-detail img-fluid"
-      src="https://image.tmdb.org/t/p/w500/{{ movie['poster_path'] }}"
+      src="https://image.tmdb.org/t/p/w500{{ movie['poster_path'] }}"
       title="{{ movie['title'] }}"
       alt="{{ movie['title'] }}"
     />
@@ -58,19 +60,33 @@
     <h3 class="h3-responsive">Cast:</h3>
 
     <div class="detail-cast-starring-container row">
-      <div class="detail-card col-4 col-lg-2"
+      <div
+        class="detail-card col-4 col-lg-2 mb-3"
         *ngFor="let cast of movie['credits']['cast'] | slice: 0:12"
       >
-        <a routerLink="/person/{{ cast['id'] }}">
-          <img
-            class="poster-img-solo"
-            src="https://image.tmdb.org/t/p/w200/{{ cast['profile_path'] }}"
-            title="{{ cast['name'] }}"
-            alt="{{ cast['name'] }}"
-          />
+        <div *ngIf="cast['profile_path'] !== null; else noPic">
+          <a class="view overlay zoom" routerLink="/person/{{ cast['id'] }}">
+            <img
+              class="poster-img-solo mb-3 hoverable"
+              src="https://image.tmdb.org/t/p/w200{{ cast['profile_path'] }}"
+              title="{{ cast['name'] }}"
+              alt="{{ cast['name'] }}"
+            />
+            <h5 class="h5-responsive heading">{{ cast["name"] }}</h5>
+          </a>
+        </div>
 
-          <p>{{ cast["name"] }}</p>
-        </a>
+        <ng-template #noPic>
+          <a class="view overlay zoom" routerLink="/person/{{ cast['id'] }}">
+            <div
+              class="hoverable mb-3 img-placeholder row align-content-center justify-content-center"
+            >
+              <i class="far fa-image mb-3"></i>
+              <p>no image</p>
+            </div>
+            <h5 class="h5-responsive heading">{{ cast["name"] }}</h5>
+          </a>
+        </ng-template>
       </div>
     </div>
   </div>

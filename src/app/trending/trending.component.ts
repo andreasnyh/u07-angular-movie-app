@@ -23,7 +23,8 @@ export class TrendingComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getTrending(1);
+    const page = +this.route.snapshot.paramMap.get('page');
+    this.getTrending(page);
   }
 
   getTrending(page: number): void {

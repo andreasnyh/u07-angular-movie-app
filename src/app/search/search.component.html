@@ -22,7 +22,9 @@
         <!-- If it's a movie -->
         <div *ngIf="result.media_type == 'movie'">
           <i class="fas fa-film fa-fw"></i>
-          <a routerLink="/movie/{{ result.id }}">
+          <a
+          routerLink="/movie/{{ result.id }}"
+          (click)="getDetails('movie', result.id)">
             <span class="result-name pl-2">
               {{ result.title }}
               <span class="category_year">

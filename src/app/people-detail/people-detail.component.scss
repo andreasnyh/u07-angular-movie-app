@@ -1,14 +1,24 @@
+.person-details-flex {
+  flex-wrap: wrap;
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+
+  .person-details-flex {
+    // flex-wrap: nowrap;
+  }
+
+.detail-text-container {
+  margin: 0;
+}
+
+}
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px){
-
-.poster-img-single-detail {
-  position: relative;
-  bottom: 0;
-}
-
-.detail-text-container {
-  margin: 3rem 12rem;
-}
+  .person-details-flex {
+    flex-wrap: nowrap;
+  }
 
 }

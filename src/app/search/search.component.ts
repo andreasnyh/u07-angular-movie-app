@@ -26,6 +26,13 @@ export class SearchComponent implements OnInit {
     this.searchTerms.next(term);
   }
 
+  getDetails(type: string, id: number): any {
+    if (type === "movie"){
+      return this.apiService.getMovieDetails(id);
+    }
+
+  }
+
   ngOnInit(): void {
     this.query$ = this.searchTerms.pipe(
       // wait 300ms after each keystroke before considering the term

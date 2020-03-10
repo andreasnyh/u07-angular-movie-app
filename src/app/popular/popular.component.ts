@@ -21,7 +21,8 @@ export class PopularComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.getPopular(1);
+    const page = +this.route.snapshot.paramMap.get('page');
+    this.getPopular(page);
   }
 
   getPopular(page: number): void {

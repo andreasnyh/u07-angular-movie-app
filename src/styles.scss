@@ -13,7 +13,9 @@ a:hover {
   z-index: 1;
 }
 
-img.poster-img {
+img.poster-img,
+img.poster-img-solo {
+  // height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
@@ -50,6 +52,20 @@ img.poster-img {
 .detail-card {
   // margin: 10px;
   text-align: center;
+}
+
+.img-placeholder{
+  // width: 218.5px;
+  // height: 327.75px;
+  width: 100%;
+  height: 100%;
+  font-size: 4rem;
+  border: 1px solid lightgray;
+}
+
+
+.img-placeholder .missing-img-no-img {
+  font-size: 3.5rem;
 }
 
 // Medium devices (tablets, 768px and up)
@@ -134,4 +150,20 @@ img.poster-img {
     margin: 7rem 12rem 2rem;
   }
 
+  .img-placeholder{
+    // width: 218.5px;
+    // height: 327.75px;
+    width: 100%;
+    height: 100%;
+    font-size: 4rem;
+    border: 1px solid lightgray;
+  }
+
+  .img-placeholder .missing-img-no-img {
+    font-size: 3.5rem;
+  }
+
+  .img-placeholder .missing-img-title {
+    // font-size: 2rem;
+  }
 }
