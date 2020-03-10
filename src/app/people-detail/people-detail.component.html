@@ -1,104 +1,129 @@
 <!-- If api call is done -->
-<div *ngIf="person">
-  <div>
-    <h2 class="h2-responsive">{{ person.name }} ({{ person.known_for_department }})</h2>
-    <div *ngIf="person.profile_path">
-      <img
-        class="poster-img-solo"
-        src="https://image.tmdb.org/t/p/w500/{{ person.profile_path }}"
-        title="{{ person.name }}"
-        alt="Picture of {{ person.name }}"
-      />
+<div class="container-fluid" *ngIf="person">
+  <!-- Image of person -->
+    <img
+    *ngIf="person.profile_path"
+      class="poster-img-single-detail img-fluid"
+      src="https://image.tmdb.org/t/p/w400/{{ person.profile_path }}"
+      title="{{ person.name }}"
+      alt="Picture of {{ person.name }}"
+    />
+
+
+  <div class="detail-text-container">
+    <h1 class="h1-responsive heading">
+      {{ person.name }} ({{ person.known_for_department }})
+    </h1>
+
+    <div *ngIf="person.birthday">
+      <h3 class="h3-responsive mt-3">Birthday:</h3>
+      <span>{{ person.birthday }}</span>
     </div>
 
-    <p *ngIf="person.birthday">Birthday: {{ person.birthday }}</p>
-    <p *ngIf="person.deathday">Died: {{ person.deathday }}</p>
-    <p *ngIf="person.popularity">Popularity: {{ person.popularity }}</p>
+    <div *ngIf="person.deathday">
+      <h3 class="h3-responsive mt-3">Died:</h3>
+      <span>{{ person.deathday }}</span>
+    </div>
+
+    <div *ngIf="person.popularity">
+      <h3 class="h3-responsive mt-3">
+        Popularity:
+      </h3>
+      <span>{{ person.popularity }}</span>
+    </div>
 
     <div *ngIf="person.also_known_as.length">
-      <h3 class="h3-responsive">Also known as:</h3>
+      <h3 class="h3-responsive mt-3">Also known as:</h3>
       <div *ngFor="let nicks of person.also_known_as">
         <span>{{ nicks }}</span>
       </div>
     </div>
 
-    <!-- Are there credits -->
-    <ng-container *ngIf="credits.length">
-      <!-- Gender check on h3 -->
-      <div *ngIf="person.gender == 1">
-        <h3 class="h3-responsive">Some of her top rated appearances:</h3>
-      </div>
-      <div *ngIf="person.gender == 2">
-        <h3 class="h3-responsive">Some of his top rated appearances:</h3>
-      </div>
-      <div *ngIf="person.gender == 0">
-        <h3 class="h3-responsive">Some top rated appearances:</h3>
-      </div>
-
-      <div class="actor-detail-cast-container">
-        <!-- Loop over the roles in credits -->
-        <div *ngFor="let roles of credits | slice: 0:10">
-          <!-- If title ==> this is a movie -->
-          <ng-container *ngIf="roles.title">
-            <div class="actor-detail-movie-card">
-              <a routerLink="/movie/{{ roles.id }}">
-                <img
-                  *ngIf="roles.poster_path"
-                  class="people-detail-poster"
-                  src="https://image.tmdb.org/t/p/w200/{{ roles.poster_path }}"
-                  title="{{ roles.title }}"
-                  alt="{{ roles.title }}"
-                />
-                <p>
-                  <strong>{{ roles.title }}</strong>
-                </p>
-              </a>
-              <span>
-                as <br>
-                <strong *ngIf="roles.character.length; else unnamed">{{ roles.character }}</strong>
-                <ng-template #unnamed>
-                  <strong>Unnamed</strong>
-                </ng-template>
-                <br> with score <br>
-                <strong>{{ roles.vote_average }}</strong>
-              </span>
-            </div>
-          </ng-container>
-
-          <!-- If name ==> this is another appearance -->
-          <ng-container *ngIf="roles.name">
-            <div class="actor-detail-movie-card">
-              <a routerLink="/tv/{{ roles.id }}">
-                <img
-                  *ngIf="roles.poster_path"
-                  class="people-detail-poster"
-                  src="https://image.tmdb.org/t/p/w200/{{ roles.poster_path }}"
-                  title="{{ roles.name }}"
-                  alt="{{ roles.name }}"
-                />
-                <p class="p-responsive">
-                  <strong>{{ roles.name }}</strong>
-                </p>
-              </a>
-              <span>
-                as <br>
-                <strong *ngIf="roles.character.length; else unnamed">{{ roles.character }}</strong>
-                <ng-template #unnamed>
-                  <strong>Unnamed</strong>
-                </ng-template>
-                <br> with score <br>
-                <strong>{{ roles.vote_average }}</strong>
-              </span>
-            </div>
-          </ng-container>
-        </div>
-      </div>
-    </ng-container>
-
     <!-- Bio about the person -->
     <div *ngIf="person.biography.length">
-      <h3 class="h3-responsive">Biography:</h3>
+      <h3 class="h3-responsive mt-3">Biography:</h3>
       <p>{{ person.biography }}</p>
     </div>
+  </div>
+
+  <!-- Are there credits -->
+  <div class="cast-starring-container" *ngIf="credits.length">
+    <!-- Gender check on h3 -->
+
+    <h3 *ngIf="person.gender == 1" class="h3-responsive mt-3">
+      Some of her top rated appearances:
+    </h3>
+
+    <h3 *ngIf="person.gender == 2" class="h3-responsive mt-3">
+      Some of his top rated appearances:
+    </h3>
+
+    <h3 *ngIf="person.gender == 0" class="h3-responsive mt-3">
+      Some top rated appearances:
+    </h3>
+
+    <!-- Loop over the roles in credits -->
+    <div class="detail-cast-starring-container row">
+      <div
+        class="detail-card col-4 col-lg-2"
+        *ngFor="let roles of credits | slice: 0:12"
+      >
+        <!-- If poster and title ==> this is a movie -->
+        <div *ngIf="roles.title">
+          <a routerLink="/movie/{{ roles.id }}">
+            <img
+              class="poster-img-solo"
+              src="https://image.tmdb.org/t/p/w200/{{ roles.poster_path }}"
+              title="{{ roles.title }}"
+              alt="{{ roles.title }}"
+            />
+            <p>
+              <strong>{{ roles.title }}</strong>
+            </p>
+          </a>
+
+          <span>
+            as <br />
+            <strong *ngIf="roles.character.length; else unnamed">{{
+              roles.character
+            }}</strong>
+            <ng-template #unnamed>
+              <strong>Unnamed</strong>
+            </ng-template>
+            <br />
+            with score <br />
+            <strong>{{ roles.vote_average }}</strong>
+          </span>
+        </div>
+
+        <!-- If poster and name ==> this is another appearance -->
+        <div *ngIf="roles.name">
+          <a routerLink="/tv/{{ roles.id }}">
+            <img
+            class="poster-img-solo"
+            src="https://image.tmdb.org/t/p/w200/{{ roles.poster_path }}"
+            title="{{ roles.name }}"
+            alt="{{ roles.name }}"
+            />
+            <p>
+              <strong>{{ roles.name }}</strong>
+            </p>
+          </a>
+          <span>
+            as <br />
+            <strong *ngIf="roles.character.length; else unnamed">{{
+              roles.character
+            }}</strong>
+            <ng-template #unnamed>
+              <strong>Unnamed</strong>
+            </ng-template>
+            <br />
+            with score <br />
+            <strong>{{ roles.vote_average }}</strong>
+          </span>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>

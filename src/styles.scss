@@ -6,78 +6,17 @@ max-width: 100%;
 
 html,
 body {
-  max-width: 100%;
   overflow-x: hidden;
 }
-/*
-.root-detail {
+
+a:hover {
+  z-index: 1;
 }
-
-
-.poster-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  flex-flow: wrap;
-}
-
-.poster-img {
-  margin-bottom: 7px;
-  width: 250px;
-}
-
-.poster-img-solo {
-  // height: 750px;
-}
-
-.poster-img-container {
-  display: flex;
-  justify-content: center;
-}
-
-.actor-card {
-  margin: 10px;
-  text-align: center;
-}
-
-.cast-container {
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.actor-detail-cast-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
-.actor-detail-movie-card {
-  margin: 10px;
-  text-align: center;
-  width: 250px;
-}
- */
-
-/* .actor-detail-cast-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
-.actor-detail-movie-card {
-  margin: 10px;
-  text-align: center;
-  width: 250px;
-} */
 
 img.poster-img {
   width: 100%;
   margin: 0;
   padding: 0;
-}
-
-.posters {
-  justify-content: space-around;
 }
 
 .row {
@@ -101,6 +40,16 @@ img.poster-img {
 
 .poster-img-single-detail {
   position: relative;
+}
+
+.detail-text-container,
+.cast-starring-container {
+  margin: 1rem;
+}
+
+.detail-card {
+  // margin: 10px;
+  text-align: center;
 }
 
 // Medium devices (tablets, 768px and up)
@@ -134,25 +83,25 @@ img.poster-img {
     margin-right: 3.5rem;
   }
 
-  .detail-cast-starring-container {
+/*   .detail-cast-starring-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-  }
+  } */
 
   .detail-text-container {
     margin: 7rem 3.5rem 2rem;
   }
 
-  .detail-card {
-    // margin: 10px;
-    text-align: center;
-  }
 }
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px){
   .page-navigation {
+        font-size: .8rem;
+  }
+
+  .page-navigation button {
     font-size: 1rem;
   }
 
@@ -181,18 +130,8 @@ img.poster-img {
     margin-right: 12rem;
   }
 
-  .detail-cast-starring-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-  }
-
   .detail-text-container {
     margin: 7rem 12rem 2rem;
   }
 
-  .detail-card {
-    // margin: 10px;
-    text-align: center;
-  }
 }

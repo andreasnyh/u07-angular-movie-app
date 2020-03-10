@@ -13,6 +13,7 @@ export class PopularComponent implements OnInit {
   title = 'Popular';
   popular: Movie[];
   page: number;
+  totalPages: number;
 
   constructor(
     private apiService: ApiService,
@@ -32,6 +33,7 @@ export class PopularComponent implements OnInit {
 
         this.popular = popular['results'];
         this.page = popular['page'];
+        this.totalPages = popular['total_pages'];
 
       });
 

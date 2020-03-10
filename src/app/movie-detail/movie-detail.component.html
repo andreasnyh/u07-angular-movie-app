@@ -2,12 +2,12 @@
 <div class="container-fluid " *ngIf="movie">
   <!-- Images -->
   <div class="container-fluid position-relative">
-    <img
+    <img *ngIf="movie['backdrop_path']"
       class="bg-img"
       src="https://image.tmdb.org/t/p/original/{{ movie['backdrop_path'] }}"
     />
 
-    <img
+    <img *ngIf="movie['poster_path']"
       class="poster-img-single-detail img-fluid"
       src="https://image.tmdb.org/t/p/w500/{{ movie['poster_path'] }}"
       title="{{ movie['title'] }}"
@@ -58,9 +58,8 @@
     <h3 class="h3-responsive">Cast:</h3>
 
     <div class="detail-cast-starring-container row">
-      <div
-        class="detail-card col-4 col-lg"
-        *ngFor="let cast of movie['credits']['cast'] | slice: 0:6"
+      <div class="detail-card col-4 col-lg-2"
+        *ngFor="let cast of movie['credits']['cast'] | slice: 0:12"
       >
         <a routerLink="/person/{{ cast['id'] }}">
           <img

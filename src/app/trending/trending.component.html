@@ -1,9 +1,9 @@
 <h1 class="title text-center h1-responsive">Trending Movies this week</h1>
 
-<div class="container-fluid posters">
+<div class="container-fluid">
   <div class="row">
     <!-- Loop trending movies, limit result with slice -->
-    <div class="col-4 col-md-2 my-2 px-2 px-md-4" *ngFor="let item of trending | slice: 0:18">
+    <div class="col-4 col-md-4 col-lg-2 my-2 px-2 px-md-4" *ngFor="let item of trending | slice: 0:18">
       <a class="view overlay zoom" routerLink="/movie/{{ item.id }}">
         <img
           class="poster-img hoverable"
