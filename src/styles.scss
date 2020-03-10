@@ -100,22 +100,27 @@ body {
     display: block;
     z-index: -1;
     margin: 0 auto;
-    min-height: 500px;
+    min-width: 90%;
   }
 
   .poster-img-single-detail {
     position: absolute;
     margin: auto;
     left: 12rem;
-    // right: 0;
-    // top: 0;
     bottom: -5rem;
     height: 60%;
+    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
   }
 
   .plot-summary {
     width: 50%;
   }
+
+  .cast-starring-container{
+    margin-left: 12rem;
+    margin-right: 12rem;
+  }
+
   .detail-cast-starring-container {
     display: flex;
     flex-wrap: wrap;
@@ -123,7 +128,7 @@ body {
   }
 
   .detail-text-container {
-    margin: 7rem 12rem;
+    margin: 7rem 12rem 2rem;
   }
 
   .detail-card {

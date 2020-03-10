@@ -15,8 +15,9 @@
     />
   </div>
 
-  <!-- Text -->
+  <!-- Written information -->
   <div class="detail-text-container">
+    <!-- Movie title -->
     <h1 class="h1-responsive heading">
       {{ movie["title"] }} ({{ movie["release_date"] | slice: 0:4 }})
     </h1>
@@ -29,8 +30,13 @@
       Original Title: {{ movie["original_title"] }}
     </h1>
 
+    <!-- Tagline -->
     <p *ngIf="movie['tagline']">Tagline: "{{ movie["tagline"] }}"</p>
-    <p>Vote average: <strong>{{ movie["vote_average"] }}</strong></p>
+
+    <!-- Vore average -->
+    <p>
+      Vote average: <strong>{{ movie["vote_average"] }}</strong>
+    </p>
 
     <!-- List of applicable genres -->
     <div *ngIf="movie['genres'].length">
@@ -48,7 +54,7 @@
   </div>
 
   <!-- Top six cast -->
-  <div class="container" *ngIf="movie['credits']['cast'].length">
+  <div class="cast-starring-container " *ngIf="movie['credits']['cast'].length">
     <h3 class="h3-responsive">Cast:</h3>
 
     <div class="detail-cast-starring-container row">
