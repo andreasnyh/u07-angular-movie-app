@@ -1,7 +1,7 @@
 <!-- If api call is done -->
 <div class="container-fluid " *ngIf="movie">
   <!-- Images -->
-  <div class="container-fluid position-relative my-4">
+  <div class="container-fluid position-relative">
     <img
       class="bg-img"
       src="https://image.tmdb.org/t/p/original/{{ movie['backdrop_path'] }}"
@@ -59,7 +59,7 @@
 
     <div class="detail-cast-starring-container row">
       <div
-        class="detail-card col-6 col-md"
+        class="detail-card col-4 col-lg"
         *ngFor="let cast of movie['credits']['cast'] | slice: 0:6"
       >
         <a routerLink="/person/{{ cast['id'] }}">
