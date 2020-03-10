@@ -75,9 +75,19 @@ body {
 }
 
 .bg-img {
-  z-index: -1;
-  max-height: 750px;
-  max-width: 100%;
+  display: none;
+
+}
+
+.poster-img-single-detail {
+  position: relative;
+  // margin-left: auto;
+  // margin-right: auto;
+  // left: 0;
+  // right: 0;
+  // top: 0;
+  // bottom: 0;
+  // max-height: 500px;
 }
 
 // Medium devices (tablets, 768px and up)
@@ -86,19 +96,34 @@ body {
     font-size: 1rem;
   }
 
-  .poster-img {
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
-    max-height: 750px;
+  .bg-img {
+    display: block;
+    z-index: -1;
+    margin: 0 auto;
+    min-height: 500px;
   }
 
-  .detail-container {
+  .poster-img-single-detail {
+    position: absolute;
+    margin: auto;
+    left: 12rem;
+    // right: 0;
+    // top: 0;
+    bottom: -5rem;
+    height: 60%;
+  }
+
+  .plot-summary {
+    width: 50%;
+  }
+  .detail-cast-starring-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+  }
+
+  .detail-text-container {
+    margin: 7rem 12rem;
   }
 
   .detail-card {

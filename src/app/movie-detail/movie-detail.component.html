@@ -1,59 +1,59 @@
 <!-- If api call is done -->
-<div *ngIf="movie">
-
-  <div class="container-fluid text-center position-relative">
+<div class="container-fluid " *ngIf="movie">
+  <!-- Images -->
+  <div class="container-fluid position-relative my-4">
     <img
       class="bg-img"
       src="https://image.tmdb.org/t/p/original/{{ movie['backdrop_path'] }}"
     />
 
     <img
-    class="poster-img img-fluid"
-    src="https://image.tmdb.org/t/p/w500/{{ movie['poster_path'] }}"
-    title="{{ movie['title'] }}"
-    alt="{{ movie['title'] }}"
-  />
-  </div>
-<!--
-  <div class="poster-img-container container-fluid text-center">
-    <img
-      class="poster-img-solo"
+      class="poster-img-single-detail img-fluid"
       src="https://image.tmdb.org/t/p/w500/{{ movie['poster_path'] }}"
       title="{{ movie['title'] }}"
       alt="{{ movie['title'] }}"
     />
-  </div> -->
-
-  <!-- if the original title is different from the title, display it -->
-  <p *ngIf="movie['original_title'] !== movie['title']">
-    Original title: {{ movie["original_title"] }}
-  </p>
-
-  <p>Title: {{ movie["title"] }} ({{ movie["release_date"] | slice: 0:4 }})</p>
-  <p *ngIf="movie['tagline']">Tagline: "{{ movie["tagline"] }}"</p>
-  <p>Vote average: {{ movie["vote_average"] }}</p>
-
-  <!-- List of applicable genres -->
-  <div *ngIf="movie['genres'].length">
-    <h3 class="h3-responsive">Genres:</h3>
-    <div *ngFor="let genre of movie['genres']">
-      <span>{{ genre["name"] }}</span>
-    </div>
   </div>
 
-  <!-- Summary plot -->
-  <div *ngIf="movie['overview'].length">
-    <h3 class="h3-responsive">Summary:</h3>
-    <p>{{ movie["overview"] }}</p>
+  <!-- Text -->
+  <div class="detail-text-container">
+    <h1 class="h1-responsive heading">
+      {{ movie["title"] }} ({{ movie["release_date"] | slice: 0:4 }})
+    </h1>
+
+    <!-- if the original title is different from the title, display it -->
+    <h1
+      class="h1-responsive heading"
+      *ngIf="movie['original_title'] !== movie['title']"
+    >
+      Original Title: {{ movie["original_title"] }}
+    </h1>
+
+    <p *ngIf="movie['tagline']">Tagline: "{{ movie["tagline"] }}"</p>
+    <p>Vote average: <strong>{{ movie["vote_average"] }}</strong></p>
+
+    <!-- List of applicable genres -->
+    <div *ngIf="movie['genres'].length">
+      <h3 class="h3-responsive">Genres:</h3>
+      <div *ngFor="let genre of movie['genres']">
+        <span>{{ genre["name"] }}</span>
+      </div>
+    </div>
+
+    <!-- Summary plot -->
+    <div class="plot-summary" *ngIf="movie['overview'].length">
+      <h3 class="h3-responsive mt-3">Summary:</h3>
+      <p>{{ movie["overview"] }}</p>
+    </div>
   </div>
 
   <!-- Top six cast -->
   <div class="container" *ngIf="movie['credits']['cast'].length">
     <h3 class="h3-responsive">Cast:</h3>
 
-    <div class="detail-container row">
+    <div class="detail-cast-starring-container row">
       <div
-        class="detail-card col-6"
+        class="detail-card col-6 col-md"
         *ngFor="let cast of movie['credits']['cast'] | slice: 0:6"
       >
         <a routerLink="/person/{{ cast['id'] }}">

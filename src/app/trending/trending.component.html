@@ -3,10 +3,10 @@
 <div class="container-fluid posters">
   <div class="row">
     <!-- Loop trending movies, limit result with slice -->
-    <div class="col-6 col-md-2 my-2 px-2 px-md-4 " *ngFor="let item of trending | slice: 0:18">
-      <a routerLink="/movie/{{ item.id }}">
+    <div class="col-6 col-md-2 my-2 px-2 px-md-4" *ngFor="let item of trending | slice: 0:18">
+      <a class="view overlay zoom" routerLink="/movie/{{ item.id }}">
         <img
-          class="poster-img"
+          class="poster-img hoverable"
           src="https://image.tmdb.org/t/p/w400/{{ item.poster_path }}"
           title="{{ item.title }}"
           alt="{{ item.title }}"
