@@ -113,16 +113,15 @@
         <!-- If poster and name ==> this is a TV appearance -->
         <div *ngIf="roles.name">
           <div *ngIf="roles.poster_path !== null; else noPic">
-
-          <a class="view overlay zoom" routerLink="/tv/{{ roles.id }}">
-            <img
-              class="poster-img-solo mb-3 hoverable"
-              src="https://image.tmdb.org/t/p/w200{{ roles.poster_path }}"
-              title="{{ roles.name }}"
-              alt="{{ roles.name }}"
-            />
-            <h5 class="h5-responsive heading">{{ roles.name }}</h5>
-          </a>
+            <a class="view overlay zoom" routerLink="/tv/{{ roles.id }}">
+              <img
+                class="poster-img-solo mb-3 hoverable"
+                src="https://image.tmdb.org/t/p/w200{{ roles.poster_path }}"
+                title="{{ roles.name }}"
+                alt="{{ roles.name }}"
+              />
+              <h5 class="h5-responsive heading">{{ roles.name }}</h5>
+            </a>
           </div>
 
           <ng-template #noPic>
@@ -131,6 +130,7 @@
                 class="hoverable mb-3 img-placeholder row align-content-center justify-content-center"
               >
                 <i class="far fa-image mb-3"></i>
+                <h5 class="missing-img-no-img heading">no image</h5>
               </div>
               <h5 class="h5-responsive heading">{{ roles.name }}</h5>
             </a>
@@ -138,9 +138,10 @@
 
           <span>
             as <br />
-            <strong *ngIf="roles.character.length; else unnamed">{{
-              roles.character
-            }}</strong>
+            <strong *ngIf="roles.character.length; else unnamed">
+              {{ roles.character }}
+            </strong>
+
             <ng-template #unnamed>
               <strong>Unnamed</strong>
             </ng-template>

@@ -1,12 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 
 * {
-max-width: 100%;
+  max-width: 100%;
 }
 
 html,
 body {
-  overflow-x: hidden;
+  // overflow-x: hidden;
 }
 
 a:hover {
@@ -28,12 +28,11 @@ img.poster-img-solo {
 
 .page-navigation {
   justify-content: center;
-  font-size: 0.70rem;
-
+  font-size: 0.7rem;
 }
 
-.page-navigation button{
-  font-size: 0.60rem;
+.page-navigation button {
+  font-size: 0.6rem;
 }
 
 .bg-img {
@@ -52,26 +51,33 @@ img.poster-img-solo {
 .detail-card {
   // margin: 10px;
   text-align: center;
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  flex-flow: inherit;
+  align-content: space-between;
+  justify-content: center;
 }
 
-.img-placeholder{
-  // width: 218.5px;
-  // height: 327.75px;
+// size of missing img icon
+.img-placeholder {
+  font-size: 2rem;
   width: 100%;
   height: 100%;
-  font-size: 4rem;
   border: 1px solid lightgray;
+  padding: 30% 0;
 }
 
-
+// no image text
 .img-placeholder .missing-img-no-img {
-  font-size: 3.5rem;
+  font-size: 1rem;
+  // padding-bottom: 0.7rem;
 }
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
   .page-navigation {
-    font-size: .7rem;
+    font-size: 0.7rem;
   }
 
   .bg-img {
@@ -87,19 +93,20 @@ img.poster-img-solo {
     left: 3.5rem;
     bottom: -5rem;
     height: 60%;
-    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
+      0 17px 50px 0 rgba(0, 0, 0, 0.19);
   }
 
   .plot-summary {
     width: 100%;
   }
 
-  .cast-starring-container{
+  .cast-starring-container {
     margin-left: 3.5rem;
     margin-right: 3.5rem;
   }
 
-/*   .detail-cast-starring-container {
+  /*   .detail-cast-starring-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -109,12 +116,28 @@ img.poster-img-solo {
     margin: 7rem 3.5rem 2rem;
   }
 
+  .detail-card {
+    font-size: 1rem;
+  }
+
+  // size of missing img icon
+  .img-placeholder {
+    font-size: 5rem;
+    // padding: 30% 0;
+    // height: 268px;
+    // border: 1px solid lightgray;
+  }
+
+  // no image text
+  .img-placeholder .missing-img-no-img {
+    font-size: 1.5rem;
+  }
 }
 
 // Large devices (desktops, 992px and up)
-@media (min-width: 992px){
+@media (min-width: 992px) {
   .page-navigation {
-        font-size: .8rem;
+    font-size: 0.8rem;
   }
 
   .page-navigation button {
@@ -134,14 +157,15 @@ img.poster-img-solo {
     left: 12rem;
     bottom: -5rem;
     height: 60%;
-    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
+      0 17px 50px 0 rgba(0, 0, 0, 0.19);
   }
 
   .plot-summary {
     width: 70%;
   }
 
-  .cast-starring-container{
+  .cast-starring-container {
     margin-left: 12rem;
     margin-right: 12rem;
   }
@@ -150,20 +174,13 @@ img.poster-img-solo {
     margin: 7rem 12rem 2rem;
   }
 
-  .img-placeholder{
-    // width: 218.5px;
-    // height: 327.75px;
-    width: 100%;
-    height: 100%;
-    font-size: 4rem;
-    border: 1px solid lightgray;
+  // size of missing img icon
+  .img-placeholder {
+    font-size: 6rem;
   }
 
+  // no image text
   .img-placeholder .missing-img-no-img {
-    font-size: 3.5rem;
-  }
-
-  .img-placeholder .missing-img-title {
-    // font-size: 2rem;
+    font-size: 2rem;
   }
 }
