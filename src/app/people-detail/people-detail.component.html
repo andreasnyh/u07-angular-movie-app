@@ -70,8 +70,12 @@
         *ngFor="let roles of credits | slice: 0:12"
       >
         <!-- If poster and title ==> this is a movie -->
-        <div *ngIf="roles.title">
-          <div *ngIf="roles.poster_path !== null; else noPic">
+        <div *ngIf="roles.title" class="d-flex justify-content-between flex-column">
+
+          <div
+            class="credit-img"
+            *ngIf="roles.poster_path !== null; else noPic"
+          >
             <a class="view overlay zoom" routerLink="/movie/{{ roles.id }}">
               <img
                 class="poster-img-solo mb-3 hoverable"
@@ -84,35 +88,42 @@
           </div>
 
           <ng-template #noPic>
-            <a class="view overlay zoom" routerLink="/movie/{{ roles.id }}">
-              <div
-                class="hoverable mb-3 img-placeholder row align-content-center justify-content-center"
-              >
-                <i class="far fa-image mb-3"></i>
-              </div>
-              <h5 class="h5-responsive heading">{{ roles.title }}</h5>
-            </a>
+            <div class="credit-img">
+              <a class="view overlay zoom" routerLink="/movie/{{ roles.id }}">
+                <div
+                  class="hoverable mb-3 img-placeholder row align-content-center justify-content-center"
+                >
+                  <i class="far fa-image mb-3"></i>
+                </div>
+                <h5 class="h5-responsive heading">{{ roles.title }}</h5>
+              </a>
+            </div>
           </ng-template>
 
-          <span>
-            as <br />
-            <strong *ngIf="roles.character.length; else unnamed">{{
-              roles.character
-            }}</strong>
-            <ng-template #unnamed>
-              <strong>Unnamed</strong>
-            </ng-template>
+          <div class="credit-text">
+            <span>
+              as <br />
+              <strong *ngIf="roles.character.length; else unnamed">{{
+                roles.character
+              }}</strong>
+              <ng-template #unnamed>
+                <strong>Unnamed</strong>
+              </ng-template>
 
-            <br />
-            with average score of<br />
-            <strong>{{ roles.vote_average }}</strong>
-          </span>
-          <p>of {{ roles.vote_count }} votes</p>
+              <br />
+              with average score of<br />
+              <strong>{{ roles.vote_average }}</strong>
+            </span>
+            <p>of {{ roles.vote_count }} votes</p>
+          </div>
         </div>
 
         <!-- If poster and name ==> this is a TV appearance -->
-        <div *ngIf="roles.name">
-          <div *ngIf="roles.poster_path !== null; else noPic">
+        <div *ngIf="roles.name"  class="d-flex justify-content-between flex-column">
+          <div
+            class="credit-img"
+            *ngIf="roles.poster_path !== null; else noPic"
+          >
             <a class="view overlay zoom" routerLink="/tv/{{ roles.id }}">
               <img
                 class="poster-img-solo mb-3 hoverable"
@@ -125,31 +136,34 @@
           </div>
 
           <ng-template #noPic>
-            <a class="view overlay zoom" routerLink="/tv/{{ roles.id }}">
-              <div
-                class="hoverable mb-3 img-placeholder row align-content-center justify-content-center"
-              >
-                <i class="far fa-image mb-3"></i>
-                <h5 class="missing-img-no-img heading">no image</h5>
-              </div>
-              <h5 class="h5-responsive heading">{{ roles.name }}</h5>
-            </a>
+            <div class="credit-img">
+              <a class="view overlay zoom" routerLink="/tv/{{ roles.id }}">
+                <div
+                  class="hoverable mb-3 img-placeholder row align-content-center justify-content-center"
+                >
+                  <i class="far fa-image mb-3"></i>
+                  <h5 class="missing-img-no-img heading">no image</h5>
+                </div>
+                <h5 class="h5-responsive heading">{{ roles.name }}</h5>
+              </a>
+            </div>
           </ng-template>
+          <div class="credit-text">
+            <span>
+              as <br />
+              <strong *ngIf="roles.character.length; else unnamed">
+                {{ roles.character }}
+              </strong>
 
-          <span>
-            as <br />
-            <strong *ngIf="roles.character.length; else unnamed">
-              {{ roles.character }}
-            </strong>
-
-            <ng-template #unnamed>
-              <strong>Unnamed</strong>
-            </ng-template>
-            <br />
-            with average score of<br />
-            <strong>{{ roles.vote_average }}</strong>
-          </span>
-          <p>of {{ roles.vote_count }} votes</p>
+              <ng-template #unnamed>
+                <strong>Unnamed</strong>
+              </ng-template>
+              <br />
+              with average score of<br />
+              <strong>{{ roles.vote_average }}</strong>
+            </span>
+            <p>of {{ roles.vote_count }} votes</p>
+          </div>
         </div>
       </div>
     </div>

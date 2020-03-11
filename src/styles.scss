@@ -7,6 +7,10 @@
 html,
 body {
   // overflow-x: hidden;
+  font-weight: normal;
+}
+
+strong {
 }
 
 a:hover {
@@ -49,14 +53,12 @@ img.poster-img-solo {
 }
 
 .detail-card {
-  // margin: 10px;
   text-align: center;
   font-size: 0.8rem;
   display: flex;
   flex-direction: column;
-  flex-flow: inherit;
-  align-content: space-between;
-  justify-content: center;
+  align-content: center;
+  justify-content: start;
 }
 
 // size of missing img icon
@@ -117,7 +119,7 @@ img.poster-img-solo {
   }
 
   .detail-card {
-    font-size: 1rem;
+    font-size: .9rem;
   }
 
   // size of missing img icon
@@ -176,7 +178,7 @@ img.poster-img-solo {
 
   // size of missing img icon
   .img-placeholder {
-    font-size: 6rem;
+    font-size: 3.7rem;
   }
 
   // no image text
