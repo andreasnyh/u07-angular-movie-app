@@ -59,50 +59,44 @@
     </div>
   </div>
 
-  <!-- Top six cast -->
+  <!-- Top 12 cast -->
   <div class="cast-starring-container " *ngIf="movie['credits']['cast'].length">
     <h3 class="h3-responsive">Cast:</h3>
 
     <div class="detail-cast-starring-container row">
-
       <div
         class="detail-card col-4 col-lg-2 justify-content-between mb-4"
-        *ngFor="let cast of movie['credits']['cast'] | slice: 0:12">
-
-      <div class="d-flex justify-content-between flex-column h-100">
-
-        <div
-          class="credit-img"
-          *ngIf="cast['profile_path'] !== null; else noPic"
-        >
-
+        *ngFor="let cast of movie['credits']['cast'] | slice: 0:12"
+      >
+        <div class="d-flex justify-content-between flex-column h-100">
+          <div
+            class="credit-img"
+            *ngIf="cast['profile_path'] !== null; else noPic"
+          >
             <a class="view overlay zoom" routerLink="/person/{{ cast['id'] }}">
               <img
-              class="poster-img-solo hoverable"
-              src="https://image.tmdb.org/t/p/w200{{ cast['profile_path'] }}"
-              title="{{ cast['name'] }}"
-              alt="{{ cast['name'] }}"
+                class="poster-img-solo hoverable"
+                src="https://image.tmdb.org/t/p/w200{{ cast['profile_path'] }}"
+                title="{{ cast['name'] }}"
+                alt="{{ cast['name'] }}"
               />
             </a>
-      </div>
+          </div>
           <h5 class="h5-responsive heading my-3">{{ cast["name"] }}</h5>
         </div>
 
         <ng-template #noPic>
-            <div class="credit-img no-img">
-                <a
-                  class="view overlay zoom"
-                  routerLink="/person/{{ cast['id'] }}"
-                >
-                  <div class="hoverable img-placeholder">
-                    <!--align-content-center justify-content-center"-->
+          <div class="credit-img no-img">
+            <a class="view overlay zoom" routerLink="/person/{{ cast['id'] }}">
+              <div class="hoverable img-placeholder">
+                <!--align-content-center justify-content-center"-->
 
-                    <i class="far fa-image mb-3"></i>
-                    <h5 class="missing-img-no-img heading">no image</h5>
-                  </div>
-                </a>
-            </div>
-            <!-- <h5 class="h5-responsive heading">{{ cast["name"] }}</h5> -->
+                <i class="far fa-image mb-3"></i>
+                <h5 class="missing-img-no-img heading">no image</h5>
+              </div>
+            </a>
+          </div>
+          <!-- <h5 class="h5-responsive heading">{{ cast["name"] }}</h5> -->
         </ng-template>
       </div>
     </div>
