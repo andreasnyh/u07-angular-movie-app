@@ -2,7 +2,7 @@
 <div class="container-fluid" *ngIf="tv">
   <!-- Images -->
   <div class="container-fluid movie-detail-img-container position-relative">
-    <div class="bg-container">
+    <div class="bg-container" *ngIf="tv['backdrop_path'] || tv['poster_path']">
       <img
         *ngIf="tv['backdrop_path']"
         class="bg-img"
@@ -96,7 +96,6 @@
                   <h5 class="missing-img-no-img heading">no image</h5>
                 </div>
               </a>
-              <!-- <h5 class="h5-responsive heading">{{ cast["name"] }}</h5> -->
             </div>
           </ng-template>
         </div>

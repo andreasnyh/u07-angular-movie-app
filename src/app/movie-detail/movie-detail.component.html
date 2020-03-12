@@ -2,7 +2,7 @@
 <div class="container-fluid " *ngIf="movie">
   <!-- Images -->
   <div class="container-fluid movie-detail-img-container position-relative">
-    <div class="bg-container">
+    <div class="bg-container" *ngIf="movie['backdrop_path'] || movie['poster_path']">
       <img
         *ngIf="movie['backdrop_path']"
         class="bg-img"

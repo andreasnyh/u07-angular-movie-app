@@ -6,6 +6,7 @@ import {
  } from 'rxjs/operators';
 
 import { ApiService } from "../api.service";
+import { Router, NavigationEnd } from "@angular/router";
 
 @Component({
   selector: 'app-search',
@@ -19,7 +20,9 @@ export class SearchComponent implements OnInit {
 
   private searchTerms = new Subject<string>();
 
-  constructor(private apiService: ApiService) {}
+  constructor(
+    private apiService: ApiService,
+  ){}
 
   // Push a search term into the observable stream.
   search(term: string): void {
@@ -28,9 +31,27 @@ export class SearchComponent implements OnInit {
 
   getDetails(type: string, id: number): any {
     if (type === "movie"){
-      return this.apiService.getMovieDetails(id);
-    }
+      return this.apiService.getMovieDetails(id).subscribe((data) => {
+        console.log(data['id']);
+        window.location.assign(`/movie/${data['id']}`);
+        // this.ngOnInit();
 
+      });
+    } else if (type === "tv") {
+      return this.apiService.getTvDetails(id).subscribe((data) => {
+        console.log(data['id']);
+        window.location.assign(`/tv/${data['id']}`);
+        // this.ngOnInit();
+
+      });
+    } else if (type === "person") {
+      return this.apiService.getPeopleDetails(id).subscribe((data) => {
+        console.log(data['id']);
+        window.location.assign(`/person/${data['id']}`);
+        // this.ngOnInit();
+
+      });
+    }
   }
 
   ngOnInit(): void {
