@@ -1,12 +1,14 @@
 <!-- If api call is done -->
 <div class="container-fluid " *ngIf="movie">
   <!-- Images -->
-  <div class="container-fluid position-relative">
-    <img
-      *ngIf="movie['backdrop_path']"
-      class="bg-img"
-      src="https://image.tmdb.org/t/p/w1280{{ movie['backdrop_path'] }}"
-    />
+  <div class="container-fluid movie-detail-img-container position-relative">
+    <div class="bg-container">
+      <img
+        *ngIf="movie['backdrop_path']"
+        class="bg-img"
+        src="https://image.tmdb.org/t/p/original{{ movie['backdrop_path'] }}"
+      />
+    </div>
 
     <img
       *ngIf="movie['poster_path']"
@@ -33,10 +35,12 @@
     </h1>
 
     <!-- Tagline -->
-    <p *ngIf="movie['tagline']">Tagline: "{{ movie["tagline"] }}"</p>
+    <p class="ml-3" *ngIf="movie['tagline']">
+      Tagline: "{{ movie["tagline"] }}"
+    </p>
 
     <!-- Vore average -->
-    <p>
+    <p class="ml-3">
       Vote average: <strong>{{ movie["vote_average"] }}</strong>
     </p>
 
@@ -44,14 +48,14 @@
     <div *ngIf="movie['genres'].length">
       <h3 class="h3-responsive">Genres:</h3>
       <div *ngFor="let genre of movie['genres']">
-        <span>{{ genre["name"] }}</span>
+        <span class="ml-3">{{ genre["name"] }}</span>
       </div>
     </div>
 
     <!-- Summary plot -->
     <div class="plot-summary" *ngIf="movie['overview'].length">
       <h3 class="h3-responsive mt-3">Summary:</h3>
-      <p>{{ movie["overview"] }}</p>
+      <p class="ml-3">{{ movie["overview"] }}</p>
     </div>
   </div>
 
@@ -60,44 +64,46 @@
     <h3 class="h3-responsive">Cast:</h3>
 
     <div class="detail-cast-starring-container row">
+
       <div
-        class="detail-card col-4 col-lg-2"
-        *ngFor="let cast of movie['credits']['cast'] | slice: 0:12"
-      >
-        <div  class="d-flex justify-content-between flex-column">
-          <div
-            class="credit-img"
-            *ngIf="cast['profile_path'] !== null; else noPic"
-          >
+        class="detail-card col-4 col-lg-2 justify-content-between mb-4"
+        *ngFor="let cast of movie['credits']['cast'] | slice: 0:12">
+
+      <div class="d-flex justify-content-between flex-column h-100">
+
+        <div
+          class="credit-img"
+          *ngIf="cast['profile_path'] !== null; else noPic"
+        >
+
             <a class="view overlay zoom" routerLink="/person/{{ cast['id'] }}">
               <img
-                class="poster-img-solo mb-3 hoverable"
-                src="https://image.tmdb.org/t/p/w200{{ cast['profile_path'] }}"
-                title="{{ cast['name'] }}"
-                alt="{{ cast['name'] }}"
+              class="poster-img-solo hoverable"
+              src="https://image.tmdb.org/t/p/w200{{ cast['profile_path'] }}"
+              title="{{ cast['name'] }}"
+              alt="{{ cast['name'] }}"
               />
-              <h5 class="h5-responsive heading">{{ cast["name"] }}</h5>
             </a>
-          </div>
-
-          <ng-template #noPic>
-            <div class="credit-img">
-              <a
-                class="view overlay zoom"
-                routerLink="/person/{{ cast['id'] }}"
-              >
-                <div
-                  class="hoverable mb-3 img-placeholder">
-                   <!--align-content-center justify-content-center"-->
-
-                  <i class="far fa-image mb-3"></i>
-                  <h5 class="missing-img-no-img heading">no image</h5>
-                </div>
-                <h5 class="h5-responsive heading">{{ cast["name"] }}</h5>
-              </a>
-            </div>
-          </ng-template>
+      </div>
+          <h5 class="h5-responsive heading my-3">{{ cast["name"] }}</h5>
         </div>
+
+        <ng-template #noPic>
+            <div class="credit-img no-img">
+                <a
+                  class="view overlay zoom"
+                  routerLink="/person/{{ cast['id'] }}"
+                >
+                  <div class="hoverable img-placeholder">
+                    <!--align-content-center justify-content-center"-->
+
+                    <i class="far fa-image mb-3"></i>
+                    <h5 class="missing-img-no-img heading">no image</h5>
+                  </div>
+                </a>
+            </div>
+            <!-- <h5 class="h5-responsive heading">{{ cast["name"] }}</h5> -->
+        </ng-template>
       </div>
     </div>
   </div>

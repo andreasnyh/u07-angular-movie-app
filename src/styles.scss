@@ -54,11 +54,15 @@ img.poster-img-solo {
 
 .detail-card {
   text-align: center;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   display: flex;
   flex-direction: column;
   align-content: center;
   justify-content: flex-start;
+}
+
+.credit-img {
+  flex-grow: 1;
 }
 
 // size of missing img icon
@@ -67,7 +71,9 @@ img.poster-img-solo {
   width: 100%;
   height: 100%;
   border: 1px solid lightgray;
-  padding: 30% 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 // no image text
@@ -82,11 +88,23 @@ img.poster-img-solo {
     font-size: 0.7rem;
   }
 
+  .movie-detail-img-container {
+
+  }
+
+  .bg-container {
+    position: relative;
+    height: 70vh;
+    width: 100vw;
+    overflow: hidden;
+  }
+
   .bg-img {
     display: block;
     z-index: -1;
     margin: 0 auto;
-    min-width: 90%;
+    min-width: 100%;
+    position: absolute;
   }
 
   .poster-img-single-detail {
@@ -146,12 +164,12 @@ img.poster-img-solo {
     font-size: 1rem;
   }
 
-  .bg-img {
+/*   .bg-img {
     display: block;
     z-index: -1;
     margin: 0 auto;
     min-width: 90%;
-  }
+  } */
 
   .poster-img-single-detail {
     position: absolute;
