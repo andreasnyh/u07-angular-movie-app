@@ -25,9 +25,9 @@ export class ApiService {
 
   getLatestReleases(): Observable<any[]> {
 
-        return this.http.get<any[]>(`${this.baseUrl}/discover/movie${this.key}&language=en-US&sort_by=release_date.desc&include_adult=false&include_video=false&page=1`)
+    return this.http.get<any[]>(`${this.baseUrl}/discover/movie${this.key}&sort_by=release_date.desc&primary_release_date.lte=2020-12-30&include_adult=false&include_video=false&page=1`)
       .pipe(
-        tap( _ => console.log('fetched trending')),
+        tap(_ => console.log('fetched trending')),
         catchError(this.handleError<any[]>('getLatestReleases', []))
       );
   }
@@ -36,7 +36,7 @@ export class ApiService {
     console.log(`getTrending page: ${page}`);
     return this.http.get<Movie[]>(`${this.baseUrl}/trending/movie/week${this.key}&page=${page}`)
       .pipe(
-        tap( _ => console.log('fetched trending')),
+        tap(_ => console.log('fetched trending')),
         catchError(this.handleError<Movie[]>('getTrending', []))
       );
   }
@@ -46,7 +46,7 @@ export class ApiService {
 
     return this.http.get<Movie[]>(`${this.baseUrl}/movie/popular${this.key}&page=${page}`)
       .pipe(
-        tap( _ => console.log('fetched popular')),
+        tap(_ => console.log('fetched popular')),
         catchError(this.handleError<Movie[]>('getPopular', []))
       );
   }
@@ -55,7 +55,7 @@ export class ApiService {
     console.log(`getMovieDetails id: ${id}`);
     return this.http.get<Movie[]>(`${this.baseUrl}/movie/${id}${this.key}&append_to_response=credits`)
       .pipe(
-        tap( _ => console.log('fetched movie details')),
+        tap(_ => console.log('fetched movie details')),
         catchError(this.handleError<Movie[]>('getMovieDetails', []))
       );
   }
@@ -64,32 +64,32 @@ export class ApiService {
     console.log(`getMovieDetails id: ${id}`);
     return this.http.get<any[]>(`${this.baseUrl}/person/${id}${this.key}&append_to_response=combined_credits`)
       .pipe(
-        tap( _ => console.log('fetched person details')),
+        tap(_ => console.log('fetched person details')),
         catchError(this.handleError<any[]>('getPersonDetails', []))
       );
   }
 
   getTvDetails(id: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/tv/${id}${this.key}&append_to_response=credits`)
-    .pipe(
-      tap( _ => console.log('fetched tv details')),
-      catchError(this.handleError<any[]>('getTvDetails', []))
-    );
+      .pipe(
+        tap(_ => console.log('fetched tv details')),
+        catchError(this.handleError<any[]>('getTvDetails', []))
+      );
   }
 
   /* GET Movies, tv-series and people that contains search term */
-searchMulti(term: string): Observable<any> {
-  if (!term.trim()) {
-    return of([]);
-  }
+  searchMulti(term: string): Observable<any> {
+    if (!term.trim()) {
+      return of([]);
+    }
 
-  return this.http.get<any>(`${this.baseUrl}/search/multi/${this.key}&query=${term}`).pipe(
-    tap(x => x.length ?
-      console.log(`found results matching "${term}"`) :
-      console.log(`no results matching "${term}"`)),
-    catchError(this.handleError<any>('searchMulti', []))
-  );
-}
+    return this.http.get<any>(`${this.baseUrl}/search/multi/${this.key}&query=${term}`).pipe(
+      tap(x => x.length ?
+        console.log(`found results matching "${term}"`) :
+        console.log(`no results matching "${term}"`)),
+      catchError(this.handleError<any>('searchMulti', []))
+    );
+  }
 
   /**
    * Handle Http operation that failed.
