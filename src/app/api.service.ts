@@ -53,7 +53,7 @@ export class ApiService {
 
   getPeopleDetails(id: number): Observable<any[]> {
     console.log(`getMovieDetails id: ${id}`);
-    return this.http.get<any[]>(`${this.baseUrl}/person/${id}${this.key}`)
+    return this.http.get<any[]>(`${this.baseUrl}/person/${id}${this.key}&append_to_response=combined_credits`)
       .pipe(
         tap( _ => console.log('fetched person details')),
         catchError(this.handleError<any[]>('getPersonDetails', []))

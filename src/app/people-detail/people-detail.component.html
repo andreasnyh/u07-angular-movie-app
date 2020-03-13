@@ -1,29 +1,104 @@
 <!-- If api call is done -->
 <div *ngIf="person">
   <div>
-    <h2>{{ person["name"] }} ({{ person["known_for_department"] }})</h2>
-    <div *ngIf="person['profile_path']">
+    <h2>{{ person.name }} ({{ person.known_for_department }})</h2>
+    <div *ngIf="person.profile_path">
       <img
         class="poster-img-solo"
-        src="https://image.tmdb.org/t/p/w500/{{ person['profile_path'] }}"
-        title="{{ person['name'] }}"
-        alt="Picture of {{ person['name'] }}"
+        src="https://image.tmdb.org/t/p/w500/{{ person.profile_path }}"
+        title="{{ person.name }}"
+        alt="Picture of {{ person.name }}"
       />
     </div>
 
-    <p *ngIf="person['birthday']">Birthday: {{ person["birthday"] }}</p>
-    <p *ngIf="person['deathday']">Died: {{ person["deathday"] }}</p>
-    <p *ngIf="person['popularity']">Popularity: {{ person["popularity"] }}</p>
+    <p *ngIf="person.birthday">Birthday: {{ person.birthday }}</p>
+    <p *ngIf="person.deathday">Died: {{ person.deathday }}</p>
+    <p *ngIf="person.popularity">Popularity: {{ person.popularity }}</p>
 
-    <div *ngIf="person['also_known_as'].length">
+    <div *ngIf="person.also_known_as.length">
       <h3>Also known as:</h3>
-      <div *ngFor="let nicks of person['also_known_as']">
+      <div *ngFor="let nicks of person.also_known_as">
         <span>{{ nicks }}</span>
       </div>
     </div>
-    <div  *ngIf="person['biography'].length">
+
+    <!-- Are there credits -->
+    <ng-container *ngIf="credits.length">
+      <!-- Gender check on h3 -->
+      <div *ngIf="person.gender == 1">
+        <h3>Some of her top rated appearances:</h3>
+      </div>
+      <div *ngIf="person.gender == 2">
+        <h3>Some of his top rated appearances:</h3>
+      </div>
+      <div *ngIf="person.gender == 0">
+        <h3>Some top rated appearances:</h3>
+      </div>
+
+      <div class="actor-detail-cast-container">
+        <!-- Loop over the roles in credits -->
+        <div *ngFor="let roles of credits | slice: 0:10">
+          <!-- If title ==> this is a movie -->
+          <ng-container *ngIf="roles.title">
+            <div class="actor-detail-movie-card">
+              <a routerLink="/movie/{{ roles.id }}">
+                <img
+                  *ngIf="roles.poster_path"
+                  class="people-detail-poster"
+                  src="https://image.tmdb.org/t/p/w200/{{ roles.poster_path }}"
+                  title="{{ roles.title }}"
+                  alt="{{ roles.title }}"
+                />
+                <p>
+                  <strong>{{ roles.title }}</strong>
+                </p>
+              </a>
+              <span>
+                as <br>
+                <strong *ngIf="roles.character.length; else unnamed">{{ roles.character }}</strong>
+                <ng-template #unnamed>
+                  <strong>Unnamed</strong>
+                </ng-template>
+                <br> with score <br>
+                <strong>{{ roles.vote_average }}</strong>
+              </span>
+            </div>
+          </ng-container>
+
+          <!-- If name ==> this is another appearance -->
+          <ng-container *ngIf="roles.name">
+            <div class="actor-detail-movie-card">
+              <a routerLink="/tv/{{ roles.id }}">
+                <img
+                  *ngIf="roles.poster_path"
+                  class="people-detail-poster"
+                  src="https://image.tmdb.org/t/p/w200/{{ roles.poster_path }}"
+                  title="{{ roles.name }}"
+                  alt="{{ roles.name }}"
+                />
+                <p>
+                  <strong>{{ roles.name }}</strong>
+                </p>
+              </a>
+              <span>
+                as <br>
+                <strong *ngIf="roles.character.length; else unnamed">{{ roles.character }}</strong>
+                <ng-template #unnamed>
+                  <strong>Unnamed</strong>
+                </ng-template>
+                <br> with score <br>
+                <strong>{{ roles.vote_average }}</strong>
+              </span>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- Bio about the person -->
+    <div *ngIf="person.biography.length">
       <h3>Biography:</h3>
-      <p>{{ person["biography"] }}</p>
+      <p>{{ person.biography }}</p>
     </div>
   </div>
 </div>
