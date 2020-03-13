@@ -9,27 +9,29 @@
         class="col-4 col-md-4 col-lg-2 my-3 px-2 px-md-4"
         *ngFor="let item of popular | slice: 0:18"
       >
-      <div *ngIf="item.poster_path !== null; else noPic">
+        <!-- Is there a poster -->
+        <div *ngIf="item.poster_path !== null; else noPic">
+          <a class="view overlay zoom" routerLink="/movie/{{ item.id }}">
+            <img
+              class="poster-img hoverable"
+              src="https://image.tmdb.org/t/p/w400/{{ item.poster_path }}"
+              title="{{ item.title }}"
+              alt="{{ item.title }}"
+            />
+          </a>
+        </div>
 
-        <a class="view overlay zoom" routerLink="/movie/{{ item.id }}">
-          <img
-            class="poster-img hoverable"
-            src="https://image.tmdb.org/t/p/w400/{{ item.poster_path }}"
-            title="{{ item.title }}"
-            alt="{{ item.title }}"
-          />
-        </a>
-</div>
-
-<ng-template #noPic>
-  <a class="view overlay zoom" routerLink="/movie/{{ item.id }}">
-    <div class="hoverable mb-3 img-placeholder row align-content-center justify-content-center">
-      <i class="far fa-image mb-3 col-12"></i>
-      <h5 class="missing-img-title col h5 heading">{{ item.title }}</h5>
-    </div>
-    </a>
-</ng-template>
-
+        <!-- Missing image placeholder -->
+        <ng-template #noPic>
+          <a class="view overlay zoom" routerLink="/movie/{{ item.id }}">
+            <div
+              class="hoverable mb-3 img-placeholder row flex-row align-content-center justify-content-center"
+            >
+              <i class="far fa-image mb-3 col-12"></i>
+              <h5 class="missing-img-title col h5 heading">{{ item.title }}</h5>
+            </div>
+          </a>
+        </ng-template>
       </div>
     </div>
   </div>
@@ -39,6 +41,7 @@
 
   <div class="page-navigation container-fluid my-3">
     <div class="row justify-content-center align-items-center px-3">
+      <!-- Previous page -->
       <button
         type="button"
         class="btn btn-primary col-4 col-md-2"
@@ -54,11 +57,12 @@
           (click)="getPopular(page - 1)"
           routerLink="/popular/{{ page - 1 }}"
           routerLinkActive
-          >
+        >
           <i class="fas fa-angle-double-left"></i>&nbsp; Previous page
         </button>
       </ng-template>
 
+      <!-- Current page -->
       <div class="col-4 col-md-2">
         <span class="current-page"
           >Page {{ page }}<br />
@@ -66,15 +70,28 @@
         >
       </div>
 
+      <!-- Next page -->
       <button
         type="button"
         class="btn btn-primary col-4 col-md-2"
-        (click)="getPopular(page + 1)"
-        routerLink="/popular/{{ page + 1 }}"
+        *ngIf="page === totalPages; else buttonNextActive"
+        disabled
         routerLinkActive
       >
         Next page &nbsp;<i class="fas fa-angle-double-right"></i>
       </button>
+
+      <ng-template #buttonNextActive>
+        <button
+          type="button"
+          class="btn btn-primary col-4 col-md-2"
+          (click)="getPopular(page + 1)"
+          routerLink="/popular/{{ page + 1 }}"
+          routerLinkActive
+        >
+          Next page &nbsp;<i class="fas fa-angle-double-right"></i>
+        </button>
+      </ng-template>
     </div>
   </div>
 </div>

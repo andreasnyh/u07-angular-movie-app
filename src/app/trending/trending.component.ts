@@ -28,17 +28,11 @@ export class TrendingComponent implements OnInit {
   }
 
   getTrending(page: number): void {
-    // const page = +this.route.snapshot.paramMap.get('page');
-    console.log(page);
-
     this.apiService.getTrending(page)
       .subscribe((trending) => {
-        // console.log(trending);
-
         this.trending = trending['results'];
         this.page = trending['page'];
         this.totalPages = trending['total_pages'];
       });
-
   }
 }

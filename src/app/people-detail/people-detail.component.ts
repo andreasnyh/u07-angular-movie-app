@@ -30,12 +30,9 @@ export class PeopleDetailComponent implements OnInit {
       .subscribe((person) => {
         this.person = person;
         this.credits = person['combined_credits']['cast'].sort(function (a, b) {
-          // if ((a.poster_path !== null && b.poster_path !== null)) {
-            // if ((a.vote_count > 50) && (b.vote_count > 50)) {
-              return b.vote_count - a.vote_count;
-            // }
-          // }
+          return b.vote_count - a.vote_count;
         });
+
       });
   }
 }

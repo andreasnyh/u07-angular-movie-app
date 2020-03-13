@@ -2,7 +2,10 @@
 <div class="container-fluid " *ngIf="movie">
   <!-- Images -->
   <div class="container-fluid movie-detail-img-container position-relative">
-    <div class="bg-container" *ngIf="movie['backdrop_path'] || movie['poster_path']">
+    <div
+      class="bg-container"
+      *ngIf="movie['backdrop_path'] || movie['poster_path']"
+    >
       <img
         *ngIf="movie['backdrop_path']"
         class="bg-img"
@@ -85,18 +88,16 @@
           <h5 class="h5-responsive heading my-3">{{ cast["name"] }}</h5>
         </div>
 
+        <!-- Missing image placeholder -->
         <ng-template #noPic>
           <div class="credit-img no-img">
             <a class="view overlay zoom" routerLink="/person/{{ cast['id'] }}">
               <div class="hoverable img-placeholder">
-                <!--align-content-center justify-content-center"-->
-
                 <i class="far fa-image mb-3"></i>
                 <h5 class="missing-img-no-img heading">no image</h5>
               </div>
             </a>
           </div>
-          <!-- <h5 class="h5-responsive heading">{{ cast["name"] }}</h5> -->
         </ng-template>
       </div>
     </div>

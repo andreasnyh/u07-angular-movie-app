@@ -68,14 +68,25 @@
       >
     </div>
 
+    <!-- Next page -->
     <button
       type="button"
       class="btn btn-primary col-4 col-md-2"
-      (click)="getTrending(page + 1)"
-      routerLink="/trending/{{ page + 1 }}"
-      routerLinkActive
+      *ngIf="page === totalPages; else buttonNextActive"
+      disabled
     >
       Next page &nbsp;<i class="fas fa-angle-double-right"></i>
     </button>
+
+    <ng-template #buttonNextActive>
+      <button
+        type="button"
+        class="btn btn-primary col-4 col-md-2"
+        (click)="getTrending(page + 1)"
+        routerLink="/trending/{{ page + 1 }}"
+      >
+        Next page &nbsp;<i class="fas fa-angle-double-right"></i>
+      </button>
+    </ng-template>
   </div>
 </div>

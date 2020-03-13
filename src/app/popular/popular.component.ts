@@ -26,12 +26,9 @@ export class PopularComponent implements OnInit {
   }
 
   getPopular(page: number): void {
-    console.log(page);
 
     this.apiService.getPopular(page)
       .subscribe((popular) => {
-        console.log(popular);
-
         this.popular = popular['results'];
         this.page = popular['page'];
         this.totalPages = popular['total_pages'];

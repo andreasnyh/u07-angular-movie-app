@@ -13,7 +13,10 @@ import { Movie } from './movie';
 export class ApiService {
 
   private baseUrl = environment.apiBase;  // URL to web api
-  private key = environment.apiKey;  // URL to web api key | Replace the value with your own
+
+  // ************    Replace the key value with your own key     ************ //
+  private key = environment.apiKey;  // URL to web api key
+  // ************  https://www.themoviedb.org/documentation/api  ************ //
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -23,6 +26,8 @@ export class ApiService {
     private http: HttpClient
   ) { }
 
+  // ToDo Make date dynamic
+  // Returns list of upcoming releases this year (hardcoded to 2020-12-30)
   getLatestReleases(): Observable<any[]> {
 
     return this.http.get<any[]>(`${this.baseUrl}/discover/movie${this.key}&sort_by=release_date.desc&primary_release_date.lte=2020-12-30&include_adult=false&include_video=false&page=1`)
@@ -32,6 +37,7 @@ export class ApiService {
       );
   }
 
+  // Returns list of trending movies 20/page - 1000 pages
   getTrending(page: number): Observable<Movie[]> {
     console.log(`getTrending page: ${page}`);
     return this.http.get<Movie[]>(`${this.baseUrl}/trending/movie/week${this.key}&page=${page}`)
@@ -41,6 +47,7 @@ export class ApiService {
       );
   }
 
+  // Returns list of popular movies 20/page - 500 pages
   getPopular(page: number): Observable<Movie[]> {
     console.log(`getPopular page: ${page}`);
 
@@ -51,6 +58,7 @@ export class ApiService {
       );
   }
 
+  // Return details of a movie
   getMovieDetails(id: number): Observable<Movie[]> {
     console.log(`getMovieDetails id: ${id}`);
     return this.http.get<Movie[]>(`${this.baseUrl}/movie/${id}${this.key}&append_to_response=credits`)
@@ -60,6 +68,7 @@ export class ApiService {
       );
   }
 
+  // Return details of a person
   getPeopleDetails(id: number): Observable<any[]> {
     console.log(`getMovieDetails id: ${id}`);
     return this.http.get<any[]>(`${this.baseUrl}/person/${id}${this.key}&append_to_response=combined_credits`)
@@ -69,6 +78,7 @@ export class ApiService {
       );
   }
 
+  // Return details of a tv show
   getTvDetails(id: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/tv/${id}${this.key}&append_to_response=credits`)
       .pipe(
@@ -82,7 +92,6 @@ export class ApiService {
     if (!term.trim()) {
       return of([]);
     }
-
     return this.http.get<any>(`${this.baseUrl}/search/multi/${this.key}&query=${term}`).pipe(
       tap(x => x.length ?
         console.log(`found results matching "${term}"`) :

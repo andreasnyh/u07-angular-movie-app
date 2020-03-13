@@ -1,8 +1,6 @@
-
 <div class="container my-3">
   <!-- Search form -->
   <form class="hide form-inline md-form form-sm m-auto">
-    <!-- <i aria-hidden="true" class="fas fa-search"></i> -->
     <input
       class="form-control form-control-sm ml-0 w-100"
       type="search"
@@ -16,15 +14,16 @@
     <ul class="search-result pl-0 w-100">
       <li
         class="hide-item list-group-item p-1"
-        *ngFor="let result of (query$ | async).results | slice:0:15"
+        *ngFor="let result of (query$ | async).results | slice: 0:15"
       >
         <!-- If it's a movie -->
         <div *ngIf="result.media_type == 'movie'">
           <i class="fas fa-film fa-fw"></i>
           <a
-          (click)="getDetails('movie', result.id)"
-          routerLink="/movie/{{ result.id }}"
-          routerLinkActive>
+            (click)="getDetails('movie', result.id)"
+            routerLink="/movie/{{ result.id }}"
+            routerLinkActive
+          >
             <span class="result-name pl-2">
               {{ result.title }}
               <span class="category_year">
@@ -38,8 +37,9 @@
         <div *ngIf="result.media_type == 'tv'">
           <i class="fas fa-tv fa-fw"></i>
           <a
-          (click)="getDetails('tv', result.id)"
-           routerLink="/tv/{{ result.id }}">
+            (click)="getDetails('tv', result.id)"
+            routerLink="/tv/{{ result.id }}"
+          >
             <span class="result-name pl-2">
               {{ result.name }}
               <span class="category_year">
@@ -53,8 +53,9 @@
         <div *ngIf="result.media_type == 'person'">
           <i class="far fa-user fa-fw"></i>
           <a
-          (click)="getDetails('person', result.id)"
-          routerLink="/person/{{ result.id }}">
+            (click)="getDetails('person', result.id)"
+            routerLink="/person/{{ result.id }}"
+          >
             <span class="result-name pl-2">
               {{ result.name }}
               <span class="category_year">
