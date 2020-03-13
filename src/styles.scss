@@ -1,0 +1,186 @@
+/* You can add global styles to this file, and also import other style files */
+
+* {
+  max-width: 100%;
+}
+
+html,
+body {
+  // overflow-x: hidden;
+  font-weight: normal;
+}
+
+a:hover {
+  z-index: 1;
+}
+
+img.poster-img,
+img.poster-img-solo {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.row {
+  text-align: center;
+  margin: 0;
+}
+
+.page-navigation {
+  justify-content: center;
+  font-size: 0.7rem;
+}
+
+.page-navigation button {
+  font-size: 0.6rem;
+}
+
+.bg-img {
+  display: none;
+}
+
+.poster-img-single-detail {
+  position: relative;
+}
+
+.detail-text-container,
+.cast-starring-container {
+  margin: 1rem;
+}
+
+.detail-card {
+  text-align: center;
+  font-size: 0.7rem;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: flex-start;
+}
+
+.credit-img {
+  flex-grow: 1;
+}
+
+// size of missing img icon
+.img-placeholder {
+  font-size: 2rem;
+  width: 100%;
+  height: 100%;
+  border: 1px solid lightgray;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+// no image text
+.img-placeholder .missing-img-no-img {
+  font-size: 1rem;
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .page-navigation {
+    font-size: 0.7rem;
+  }
+
+  .bg-container {
+    position: relative;
+    height: 70vmin;
+    width: 100vw;
+    overflow: hidden;
+  }
+
+  .bg-img {
+    display: block;
+    z-index: -1;
+    margin: 0 auto;
+    min-width: 100%;
+    position: absolute;
+  }
+
+  .poster-img-single-detail {
+    position: absolute;
+    margin: auto;
+    left: 3.5rem;
+    bottom: -5rem;
+    height: 60%;
+    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
+      0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .plot-summary {
+    width: 100%;
+  }
+
+  .cast-starring-container {
+    margin-left: 3.5rem;
+    margin-right: 3.5rem;
+  }
+
+  .detail-text-container {
+    margin: 7rem 3.5rem 2rem;
+  }
+
+  .detail-card {
+    font-size: 0.9rem;
+  }
+
+  // size of missing img icon
+  .img-placeholder {
+    font-size: 5rem;
+  }
+
+  // no image text
+  .img-placeholder .missing-img-no-img {
+    font-size: 1.5rem;
+  }
+}
+
+// Medium devices portrait (tablets, 768px and up)
+@media (min-width: 768px) and (orientation: portrait) {
+  .detail-text-container {
+    margin-top: 2rem;
+  }
+
+  .poster-img-single-detail {
+    bottom: 1rem;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .page-navigation {
+    font-size: 0.8rem;
+  }
+
+  .page-navigation button {
+    font-size: 1rem;
+  }
+
+  .poster-img-single-detail {
+    left: 12rem;
+  }
+
+  .plot-summary {
+    width: 70%;
+  }
+
+  .cast-starring-container {
+    margin-left: 12rem;
+    margin-right: 12rem;
+  }
+
+  .detail-text-container {
+    margin: 7rem 12rem 2rem;
+  }
+
+  // size of missing img icon
+  .img-placeholder {
+    font-size: 3.7rem;
+  }
+
+  // no image text
+  .img-placeholder .missing-img-no-img {
+    font-size: 2rem;
+  }
+}

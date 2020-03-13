@@ -4,7 +4,7 @@ import { ApiService } from "../api.service";
 @Component({
   selector: 'app-page-navigation',
   templateUrl: './page-navigation.component.html',
-  styleUrls: ['./page-navigation.component.css']
+  styleUrls: ['./page-navigation.component.scss']
 })
 export class PageNavigationComponent implements OnInit {
 

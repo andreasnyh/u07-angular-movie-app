@@ -1,0 +1,33 @@
+form.md-form {
+  width: 70%;
+}
+
+ul.search-result{
+  position: absolute;
+  top: 3rem;
+  z-index: 1;
+}
+
+/* hide element */
+.hide:focus-within .hide-item {
+  opacity: 100%;
+}
+
+.hide .hide-item {
+  opacity: 0;
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+
+  form.md-form {
+    width: 50%;
+  }
+
+input{
+  padding-left: 38px !important;
+}
+
+
+
+ }

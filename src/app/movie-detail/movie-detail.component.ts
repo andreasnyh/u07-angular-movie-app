@@ -7,7 +7,7 @@ import { ApiService } from "../api.service";
 @Component({
   selector: 'app-movie-detail',
   templateUrl: './movie-detail.component.html',
-  styleUrls: ['./movie-detail.component.css']
+  styleUrls: ['./movie-detail.component.scss']
 })
 
 export class MovieDetailComponent implements OnInit {
@@ -25,8 +25,6 @@ export class MovieDetailComponent implements OnInit {
 
   getMovieDetails(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    console.log(id);
-
     this.apiService.getMovieDetails(id)
       .subscribe(movie => this.movie = movie);
   };

@@ -7,13 +7,14 @@ import { ApiService } from "../api.service";
 @Component({
   selector: 'app-trending',
   templateUrl: './trending.component.html',
-  styleUrls: ['./trending.component.css']
+  styleUrls: ['./trending.component.scss']
 })
 export class TrendingComponent implements OnInit {
 
   title: 'Trending this week';
   trending: Movie[];
   page: number;
+  totalPages: number;
 
 
   constructor(
@@ -22,20 +23,16 @@ export class TrendingComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getTrending(1);
+    const page = +this.route.snapshot.paramMap.get('page');
+    this.getTrending(page);
   }
 
   getTrending(page: number): void {
-    // const page = +this.route.snapshot.paramMap.get('page');
-    console.log(page);
-
     this.apiService.getTrending(page)
       .subscribe((trending) => {
-        console.log(trending);
-
         this.trending = trending['results'];
         this.page = trending['page'];
+        this.totalPages = trending['total_pages'];
       });
-
   }
 }

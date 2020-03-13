@@ -1,52 +1,105 @@
 <!-- If api call is done -->
-<div *ngIf="movie">
+<div class="container-fluid " *ngIf="movie">
+  <!-- Images -->
+  <div class="container-fluid movie-detail-img-container position-relative">
+    <div
+      class="bg-container"
+      *ngIf="movie['backdrop_path'] || movie['poster_path']"
+    >
+      <img
+        *ngIf="movie['backdrop_path']"
+        class="bg-img"
+        src="https://image.tmdb.org/t/p/original{{ movie['backdrop_path'] }}"
+      />
+    </div>
 
-  <img
-  class="bg-img"
-  src="https://image.tmdb.org/t/p/original/{{ movie['backdrop_path'] }}"
-/>
+    <img
+      *ngIf="movie['poster_path']"
+      class="poster-img-single-detail img-fluid"
+      src="https://image.tmdb.org/t/p/w500{{ movie['poster_path'] }}"
+      title="{{ movie['title'] }}"
+      alt="{{ movie['title'] }}"
+    />
+  </div>
 
-<div class="poster-img-container">
-  <img
-    class="poster-img-solo"
-    src="https://image.tmdb.org/t/p/w500/{{ movie['poster_path'] }}"
-    title="{{ movie['title'] }}"
-    alt="{{ movie['title'] }}"
-  />
-</div>
+  <!-- Written information -->
+  <div class="detail-text-container">
+    <!-- Movie title -->
+    <h1 class="h1-responsive heading">
+      {{ movie["title"] }} ({{ movie["release_date"] | slice: 0:4 }})
+    </h1>
 
-  <!-- if the original title is different from the title, display it -->
-  <p *ngIf="movie['original_title'] !== movie['title']">
-    Original title: {{ movie["original_title"] }}
-  </p>
+    <!-- if the original title is different from the title, display it -->
+    <h1
+      class="h1-responsive heading"
+      *ngIf="movie['original_title'] !== movie['title']"
+    >
+      Original Title: {{ movie["original_title"] }}
+    </h1>
 
-  <p>Title: {{ movie["title"] }} ({{ movie["release_date"] | slice: 0:4 }})</p>
-  <p *ngIf="movie['tagline']">Tagline: "{{ movie["tagline"] }}"</p>
-  <p>Vote average: {{ movie["vote_average"] }}</p>
+    <!-- Tagline -->
+    <p class="ml-3" *ngIf="movie['tagline']">
+      Tagline: "{{ movie["tagline"] }}"
+    </p>
 
-  <!-- List of applicable genres -->
-  <div *ngIf="movie['genres'].length">
-    <h3>Genres:</h3>
-    <div *ngFor="let genre of movie['genres']">
-      <span>{{ genre["name"] }}</span>
+    <!-- Vore average -->
+    <p class="ml-3">
+      Vote average: <strong>{{ movie["vote_average"] }}</strong>
+    </p>
+
+    <!-- List of applicable genres -->
+    <div *ngIf="movie['genres'].length">
+      <h3 class="h3-responsive">Genres:</h3>
+      <div *ngFor="let genre of movie['genres']">
+        <span class="ml-3">{{ genre["name"] }}</span>
+      </div>
+    </div>
+
+    <!-- Summary plot -->
+    <div class="plot-summary" *ngIf="movie['overview'].length">
+      <h3 class="h3-responsive mt-3">Summary:</h3>
+      <p class="ml-3">{{ movie["overview"] }}</p>
     </div>
   </div>
 
-  <!-- Summary plot -->
-  <div *ngIf="movie['overview'].length">
-    <h3>Summary:</h3>
-    <p>{{ movie["overview"] }}</p>
-  </div>
+  <!-- Top 12 cast -->
+  <div class="cast-starring-container " *ngIf="movie['credits']['cast'].length">
+    <h3 class="h3-responsive">Cast:</h3>
 
-  <!-- Top five cast -->
-  <div *ngIf="movie['credits']['cast'].length">
-    <h3>Cast:</h3>
-    <div *ngFor="let cast of movie['credits']['cast'] | slice: 0:5">
-      <a routerLink="/person/{{ cast['id'] }}">
+    <div class="detail-cast-starring-container row">
+      <div
+        class="detail-card col-4 col-lg-2 justify-content-between mb-4"
+        *ngFor="let cast of movie['credits']['cast'] | slice: 0:12"
+      >
+        <div class="d-flex justify-content-between flex-column h-100">
+          <div
+            class="credit-img"
+            *ngIf="cast['profile_path'] !== null; else noPic"
+          >
+            <a class="view overlay zoom" routerLink="/person/{{ cast['id'] }}">
+              <img
+                class="poster-img-solo hoverable"
+                src="https://image.tmdb.org/t/p/w200{{ cast['profile_path'] }}"
+                title="{{ cast['name'] }}"
+                alt="{{ cast['name'] }}"
+              />
+            </a>
+          </div>
+          <h5 class="h5-responsive heading my-3">{{ cast["name"] }}</h5>
+        </div>
 
-
-        <p>{{ cast["name"] }}</p>
-      </a>
+        <!-- Missing image placeholder -->
+        <ng-template #noPic>
+          <div class="credit-img no-img">
+            <a class="view overlay zoom" routerLink="/person/{{ cast['id'] }}">
+              <div class="hoverable img-placeholder">
+                <i class="far fa-image mb-3"></i>
+                <h5 class="missing-img-no-img heading">no image</h5>
+              </div>
+            </a>
+          </div>
+        </ng-template>
+      </div>
     </div>
   </div>
 </div>

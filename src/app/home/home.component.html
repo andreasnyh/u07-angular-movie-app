@@ -1,3 +1,38 @@
-<h1>Welcome to the IMDB destroyer</h1>
+<h1 class="title text-center h1-responsive">Your Last Movie Database</h1>
+<div *ngIf="latest">
+  <div class="container">
+    <h2 class="h2 heading">
+      Upcoming movies
+    </h2>
 
-<app-search></app-search>
+    <div class="row">
+      <!-- Loop Popular movies, limit result with slice -->
+      <div
+        class="col-4 col-md-4 col-lg-3 my-3 px-2 px-md-4"
+        *ngFor="let item of latest"
+      >
+        <div *ngIf="item.poster_path !== null; else noPic">
+          <a class="view overlay zoom" routerLink="/movie/{{ item.id }}">
+            <img
+              class="poster-img hoverable"
+              src="https://image.tmdb.org/t/p/w400/{{ item.poster_path }}"
+              title="{{ item.title }}"
+              alt="{{ item.title }}"
+            />
+          </a>
+        </div>
+
+        <ng-template #noPic>
+          <a class="view overlay zoom" routerLink="/movie/{{ item.id }}">
+            <div
+              class="hoverable mb-3 img-placeholder row align-content-center justify-content-center flex-row"
+            >
+              <i class="far fa-image mb-3 col-12"></i>
+              <h5 class="missing-img-title col h5 heading">{{ item.title }}</h5>
+            </div>
+          </a>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

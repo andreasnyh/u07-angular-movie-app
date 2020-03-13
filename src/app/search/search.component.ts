@@ -2,16 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
 import {
-   debounceTime, distinctUntilChanged, switchMap
- } from 'rxjs/operators';
+  debounceTime, distinctUntilChanged, switchMap
+} from 'rxjs/operators';
 
 import { ApiService } from "../api.service";
-import { Movie } from "../movie";
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
+  styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
 
@@ -20,11 +19,38 @@ export class SearchComponent implements OnInit {
 
   private searchTerms = new Subject<string>();
 
-  constructor(private apiService: ApiService) {}
+  constructor(
+    private apiService: ApiService,
+  ) { }
 
   // Push a search term into the observable stream.
   search(term: string): void {
     this.searchTerms.next(term);
+  }
+
+  getDetails(type: string, id: number): any {
+    if (type === "movie") {
+      return this.apiService.getMovieDetails(id).subscribe((data) => {
+        console.log(data['id']);
+        window.location.assign(`/movie/${data['id']}`);
+        // this.ngOnInit();
+
+      });
+    } else if (type === "tv") {
+      return this.apiService.getTvDetails(id).subscribe((data) => {
+        console.log(data['id']);
+        window.location.assign(`/tv/${data['id']}`);
+        // this.ngOnInit();
+
+      });
+    } else if (type === "person") {
+      return this.apiService.getPeopleDetails(id).subscribe((data) => {
+        console.log(data['id']);
+        window.location.assign(`/person/${data['id']}`);
+        // this.ngOnInit();
+
+      });
+    }
   }
 
   ngOnInit(): void {

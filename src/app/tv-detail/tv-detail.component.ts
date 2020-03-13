@@ -5,7 +5,7 @@ import { ApiService } from '../api.service';
 @Component({
   selector: 'app-tv-detail',
   templateUrl: './tv-detail.component.html',
-  styleUrls: ['./tv-detail.component.css']
+  styleUrls: ['./tv-detail.component.scss']
 })
 
 export class TvDetailComponent implements OnInit {

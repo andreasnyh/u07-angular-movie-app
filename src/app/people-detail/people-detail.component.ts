@@ -5,7 +5,7 @@ import { ApiService } from '../api.service';
 @Component({
   selector: 'app-people-detail',
   templateUrl: './people-detail.component.html',
-  styleUrls: ['./people-detail.component.css']
+  styleUrls: ['./people-detail.component.scss']
 })
 
 export class PeopleDetailComponent implements OnInit {
@@ -30,8 +30,9 @@ export class PeopleDetailComponent implements OnInit {
       .subscribe((person) => {
         this.person = person;
         this.credits = person['combined_credits']['cast'].sort(function (a, b) {
-          return b.vote_average - a.vote_average;
+          return b.vote_count - a.vote_count;
         });
+
       });
   }
 }

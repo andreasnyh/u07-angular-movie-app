@@ -7,12 +7,13 @@ import { ApiService } from '../api.service';
 @Component({
   selector: 'app-popular',
   templateUrl: './popular.component.html',
-  styleUrls: ['./popular.component.css']
+  styleUrls: ['./popular.component.scss']
 })
 export class PopularComponent implements OnInit {
   title = 'Popular';
   popular: Movie[];
   page: number;
+  totalPages: number;
 
   constructor(
     private apiService: ApiService,
@@ -20,18 +21,17 @@ export class PopularComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.getPopular(1);
+    const page = +this.route.snapshot.paramMap.get('page');
+    this.getPopular(page);
   }
 
   getPopular(page: number): void {
-    console.log(page);
 
     this.apiService.getPopular(page)
       .subscribe((popular) => {
-        console.log(popular);
-
         this.popular = popular['results'];
         this.page = popular['page'];
+        this.totalPages = popular['total_pages'];
 
       });
 

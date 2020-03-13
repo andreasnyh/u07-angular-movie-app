@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from "@angular/common/http";
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,7 @@ import { PageNavigationComponent } from './page-navigation/page-navigation.compo
 import { SearchComponent } from './search/search.component';
 import { PeopleDetailComponent } from './people-detail/people-detail.component';
 import { TvDetailComponent } from './tv-detail/tv-detail.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -23,12 +25,14 @@ import { TvDetailComponent } from './tv-detail/tv-detail.component';
     PageNavigationComponent,
     SearchComponent,
     PeopleDetailComponent,
-    TvDetailComponent
+    TvDetailComponent,
+    NavBarComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MDBBootstrapModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

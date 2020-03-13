@@ -1,52 +1,149 @@
 <!-- If api call is done -->
-<div class="root-detail" *ngIf="tv">
-  <img
-  class="bg-img"
-  src="https://image.tmdb.org/t/p/original/{{ tv['backdrop_path'] }}"
-/>
-
-<div class="poster-img-container">
-  <img
-    class="poster-img-solo"
-    src="https://image.tmdb.org/t/p/w500/{{ tv['poster_path'] }}"
-    title="{{ tv['title'] }}"
-    alt="{{ tv['title'] }}"
-  />
-</div>
-
-  <!-- if the original title is different from the title, display it -->
-  <p *ngIf="tv['original_title'] !== tv['title']">
-    Original title: {{ tv["original_title"] }}
-  </p>
-
-  <p>Title: {{ tv["name"] }} ({{ tv["first_air_date"] | slice: 0:4 }})</p>
-  <p></p>
-  <p>Number of seasons: {{ tv["number_of_seasons"] }}</p>
-  <p>Number of episodes: {{ tv["number_of_episodes"] }}</p>
-  <h3>Genres:</h3>
-  <div *ngFor="let genre of tv['genres']">
-    <span>{{ genre["name"] }}</span>
+<div class="container-fluid" *ngIf="tv">
+  <!-- Images -->
+  <div class="container-fluid movie-detail-img-container position-relative">
+    <div class="bg-container" *ngIf="tv['backdrop_path'] || tv['poster_path']">
+      <img
+        *ngIf="tv['backdrop_path']"
+        class="bg-img"
+        src="https://image.tmdb.org/t/p/original{{ tv['backdrop_path'] }}"
+      />
+    </div>
+    <img
+      *ngIf="tv['poster_path']"
+      class="poster-img-single-detail img-fluid"
+      src="https://image.tmdb.org/t/p/w500{{ tv['poster_path'] }}"
+      title="{{ tv['title'] }}"
+      alt="{{ tv['title'] }}"
+    />
   </div>
-  <h3>Summary:</h3>
-  <p>{{ tv["overview"] }}</p>
 
-  <!-- Top five cast -->
-  <div *ngIf="tv['credits']['cast'].length">
-    <h3>Cast:</h3>
-    <div class="cast-container">
+  <!-- Written information -->
+  <div class="detail-text-container">
+    <!-- TV title -->
+    <h1 class="h1-responsive heading">
+      {{ tv["name"] }} ({{ tv["first_air_date"] | slice: 0:4 }})
+    </h1>
+
+    <!-- if the original title is different from the title, display it -->
+    <h1
+      class="h1-responsive heading"
+      *ngIf="tv['original_title'] !== tv['title']"
+    >
+      Original title: {{ tv["original_title"] }}
+    </h1>
+
+    <div class="ml-3">
+      <p>Number of seasons: {{ tv["number_of_seasons"] }}</p>
+      <p>Number of episodes: {{ tv["number_of_episodes"] }}</p>
+
+      <p>
+        Average score: <strong>{{ tv["vote_average"] }}/10</strong> of
+        {{ tv["vote_count"] }} votes
+      </p>
+    </div>
+
+    <!-- List of applicable genres -->
+    <div *ngIf="tv['genres'].length">
+      <h3 class="h3-responsive">Genres:</h3>
+      <div class="ml-3" *ngFor="let genre of tv['genres']">
+        <span>{{ genre["name"] }}</span>
+      </div>
+    </div>
+
+    <!-- Summary plot -->
+    <div class="plot-summary" *ngIf="tv['overview'].length">
+      <h3 class="h3-responsive mt-3">Summary:</h3>
+      <p class="ml-3">{{ tv["overview"] }}</p>
+    </div>
+  </div>
+
+  <!-- Top 12 cast -->
+  <div class="cast-starring-container " *ngIf="tv['credits']['cast'].length">
+    <h3 class="h3-responsive">Cast:</h3>
+
+    <div class="detail-cast-starring-container row">
       <div
-        class="actor-card"
-        *ngFor="let cast of tv['credits']['cast'] | slice: 0:5"
+        class="detail-card col-4 col-lg-2 justify-content-between mb-4"
+        *ngFor="let cast of tv['credits']['cast'] | slice: 0:12"
       >
-        <a routerLink="/person/{{ cast['id'] }}">
-          <img
-            class="poster-img-solo"
-            src="https://image.tmdb.org/t/p/w200/{{ cast['profile_path'] }}"
-            title="{{ cast['name'] }}"
-            alt="{{ cast['name'] }}"
-          />
-          <p>{{ cast["name"] }}</p>
-        </a>
+        <div class="d-flex justify-content-between flex-column h-100">
+          <div
+            class="credit-img"
+            *ngIf="cast['profile_path'] !== null; else noPic"
+          >
+            <a class="view overlay zoom" routerLink="/person/{{ cast['id'] }}">
+              <img
+                class="poster-img-solo hoverable"
+                src="https://image.tmdb.org/t/p/w200{{ cast['profile_path'] }}"
+                title="{{ cast['name'] }}"
+                alt="{{ cast['name'] }}"
+              />
+            </a>
+          </div>
+
+          <h5 class="h5-responsive heading my-3">{{ cast["name"] }}</h5>
+
+          <!-- Missing image placeholder -->
+          <ng-template #noPic>
+            <div class="credit-img no-img">
+              <a
+                class="view overlay zoom"
+                routerLink="/person/{{ cast['id'] }}"
+              >
+                <div class="hoverable img-placeholder">
+                  <i class="far fa-image mb-3"></i>
+                  <h5 class="missing-img-no-img heading">no image</h5>
+                </div>
+              </a>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top 12 crew -->
+  <div class="cast-starring-container " *ngIf="tv['credits']['crew'].length">
+    <h3 class="h3-responsive">Crew:</h3>
+
+    <div class="detail-cast-starring-container row">
+      <div
+        class="detail-card col-4 col-lg-2 justify-content-between mb-4"
+        *ngFor="let cast of tv['credits']['crew'] | slice: 0:12"
+      >
+        <div class="d-flex justify-content-between flex-column h-100">
+          <div
+            class="credit-img"
+            *ngIf="cast['profile_path'] !== null; else noPic"
+          >
+            <a class="view overlay zoom" routerLink="/person/{{ cast['id'] }}">
+              <img
+                class="poster-img-solo hoverable"
+                src="https://image.tmdb.org/t/p/w200{{ cast['profile_path'] }}"
+                title="{{ cast['name'] }}"
+                alt="{{ cast['name'] }}"
+              />
+            </a>
+          </div>
+
+          <h5 class="h5-responsive heading my-3">{{ cast["name"] }}</h5>
+
+          <!-- Missing image placeholder -->
+          <ng-template #noPic>
+            <div class="credit-img no-img">
+              <a
+                class="view overlay zoom"
+                routerLink="/person/{{ cast['id'] }}"
+              >
+                <div class="hoverable img-placeholder">
+                  <i class="far fa-image mb-3"></i>
+                  <h5 class="missing-img-no-img heading">no image</h5>
+                </div>
+              </a>
+            </div>
+          </ng-template>
+        </div>
       </div>
     </div>
   </div>
