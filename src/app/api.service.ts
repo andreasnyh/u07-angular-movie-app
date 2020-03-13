@@ -3,20 +3,23 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap, timestamp } from 'rxjs/operators';
-
-import { environment } from "../environments/environment-api";
 import { Movie } from './movie';
+
+// ************    Remove this import if you've cloned the project     ************ //
+// import { environment } from "../environments/environment-api";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  private baseUrl = environment.apiBase;  // URL to web api
-
   // ************    Replace the key value with your own key     ************ //
-  private key = environment.apiKey;  // URL to web api key
+  private key = '?api_key=YourKey';
+  private baseUrl = 'https://api.themoviedb.org/3';  // URL to web API
   // ************  https://www.themoviedb.org/documentation/api  ************ //
+
+  // private key = environment.apiKey; // Private API key
+  // private baseUrl = environment.apiBase;  // URL to web API
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -27,7 +30,7 @@ export class ApiService {
   ) { }
 
   // ToDo Make date dynamic
-  // Returns list of upcoming releases this year (hardcoded to 2020-12-30)
+  // Returns list of upcoming releases this year (hard coded to 2020-12-30)
   getLatestReleases(): Observable<any[]> {
 
     return this.http.get<any[]>(`${this.baseUrl}/discover/movie${this.key}&sort_by=release_date.desc&primary_release_date.lte=2020-12-30&include_adult=false&include_video=false&page=1`)
