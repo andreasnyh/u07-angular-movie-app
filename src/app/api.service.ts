@@ -14,11 +14,11 @@ import { Movie } from './movie';
 export class ApiService {
 
   // ************    Replace the key value with your own key     ************ //
-  private key = '?api_key=YourKey';
+  // private key = '?api_key=YourKey';
   private baseUrl = 'https://api.themoviedb.org/3';  // URL to web API
   // ************  https://www.themoviedb.org/documentation/api  ************ //
 
-  // private key = environment.apiKey; // Private API key
+  private key = environment.apiKey; // Private API key
   // private baseUrl = environment.apiBase;  // URL to web API
 
   httpOptions = {
