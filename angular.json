@@ -127,6 +127,14 @@
               "devServerTarget": "u07-angular-movie-app:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@netlify-builder/deploy:deploy",
+          "options": {
+            "outputPath": "dist/u07-angular-movie-app",
+            "netlifyToken": "",
+            "siteId": "c48e41d5-78b9-4cd8-a1e9-5f325648fe18"
+          }
         }
       }
     }

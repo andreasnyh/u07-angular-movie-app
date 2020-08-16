@@ -6,7 +6,7 @@ import { catchError, map, tap, timestamp } from 'rxjs/operators';
 import { Movie } from './movie';
 
 // ************    Remove this import if you've cloned the project     ************ //
-// import { environment } from "../environments/environment-api";
+import { environment } from "../environments/environment.prod";
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +14,12 @@ import { Movie } from './movie';
 export class ApiService {
 
   // ************    Replace the key value with your own key     ************ //
-  private key = '?api_key=YourKey';
-  private baseUrl = 'https://api.themoviedb.org/3';  // URL to web API
+  // private key = '?api_key=YourKey';
+  // private baseUrl = 'https://api.themoviedb.org/3';  // URL to web API
   // ************  https://www.themoviedb.org/documentation/api  ************ //
 
-  // private key = environment.apiKey; // Private API key
-  // private baseUrl = environment.apiBase;  // URL to web API
+  private key = environment.apiKey; // Private API key
+  private baseUrl = environment.apiBase;  // URL to web API
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
