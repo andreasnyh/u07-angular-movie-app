@@ -6,7 +6,7 @@ import { catchError, map, tap, timestamp } from 'rxjs/operators';
 import { Movie } from './movie';
 
 // ************    Remove this import if you've cloned the project     ************ //
-// import { environment } from "../environments/environment-api";
+import { environment } from "../environments/environment.prod";
 
 @Injectable({
   providedIn: 'root'
